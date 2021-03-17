@@ -11,8 +11,6 @@ class StockViewCell: UITableViewCell {
 
     static let identifier = "StockInfoCell"
     
-    @IBOutlet weak var companyImage: UIImageView!
-    
     @IBOutlet weak var tickerLabel: UILabel!
     
     @IBOutlet weak var companyNameLabel: UILabel!
@@ -22,6 +20,8 @@ class StockViewCell: UITableViewCell {
     @IBOutlet weak var changePriceLabel: UILabel!
     
     @IBOutlet weak var view: UIView!
+  
+    @IBOutlet weak var companyIcon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,13 +34,19 @@ class StockViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func layoutSubviews() {
+        layer.cornerRadius = 16
+        super.layoutSubviews()
+    }
+    
     
     func configure(with stockInfo: StockInfo, at indexPath: Int){
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = 16
         tickerLabel.text = stockInfo.symbol
         companyNameLabel.text = stockInfo.companyName
         currentPriceLabel.text = "$\(stockInfo.latestPrice)"
-        changePriceLabel.text = "\(stockInfo.change) (\(stockInfo.changePercent)%)"
+        changePriceLabel.text = "\(stockInfo.change) (\(round(stockInfo.changePercent * 100) / 100)%)"
+        companyIcon.layer.cornerRadius = 16
         
         if stockInfo.change > 0{
             changePriceLabel.textColor = .fromHex("#24B35D")
@@ -57,5 +63,9 @@ class StockViewCell: UITableViewCell {
         }
         
     
-}
+    }
+    
+    func configureImage(with image: UIImage){
+        companyIcon.image = image
+    }
 }

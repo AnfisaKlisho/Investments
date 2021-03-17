@@ -11,7 +11,8 @@ protocol NetworkServiceProtocol{
     func get<Object: Decodable> (type: Object.Type, from urlComponents: URLComponents, completion: @escaping (Result<Object, SessionError>) -> Void)
     
     func getListOfCompanies(_ amount: Int, completion: @escaping (Result<[StockInfo], SessionError>) -> Void)
-    
+    func getLogoUrl(for symbol: String, completion: @escaping (Result<ImageInfo, SessionError>) -> Void)
+    func getLogoImage(for url: URL?, completion: @escaping (Result<UIImage, SessionError>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol{
@@ -33,7 +34,7 @@ class NetworkService: NetworkServiceProtocol{
     }
     
     //MARK:-Get list of companies
-    func getListOfCompanies(_ amount: Int = 50, completion: @escaping (Result<[StockInfo], SessionError>) -> Void) {
+    func getListOfCompanies(_ amount: Int = 20, completion: @escaping (Result<[StockInfo], SessionError>) -> Void) {
         var listUrlComponents = baseURL
         listUrlComponents.path = "/stable/stock/market/list/mostactive"
         listUrlComponents.queryItems?.append(URLQueryItem(name: "listLimit", value: "\(amount)"))
@@ -41,6 +42,45 @@ class NetworkService: NetworkServiceProtocol{
         get(type: [StockInfo].self, from: listUrlComponents) { (result) in
             completion(result)
         }
+    }
+    
+    //MARK:- Get Logo URL
+    func getLogoUrl(for symbol: String, completion: @escaping (Result<ImageInfo, SessionError>) -> Void){
+        var logoUrlComponents = baseURL
+        logoUrlComponents.path = "/v1/stock/\(symbol.lowercased())/logo"
+        //print(logoUrlComponents.url)
+        
+        get(type: ImageInfo.self, from: logoUrlComponents) { (result) in
+            completion(result)
+        }
+    }
+    
+    //MARK:-Get Logo Image
+    func getLogoImage(for url: URL?, completion: @escaping (Result<UIImage, SessionError>) -> Void){
+        guard let url = url else{
+            completion(.failure(.invalidURL))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error{
+                DispatchQueue.main.async {
+                    completion(.failure(.other(error)))
+                }
+                return
+                
+            }
+            guard let data = data, let image = UIImage(data: data) else{
+                DispatchQueue.main.async {
+                    completion(.failure(.dataError))
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(.success(image))
+            }
+        }.resume()
     }
     
     //MARK:- Get Request

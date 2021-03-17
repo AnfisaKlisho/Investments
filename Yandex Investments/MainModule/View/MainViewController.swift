@@ -11,6 +11,7 @@ class MainViewController: UIViewController {
 
     var presenter: MainViewPresenterProtocol!
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -24,8 +25,7 @@ class MainViewController: UIViewController {
         
     }
     
-
-    
+  
 
 }
 
@@ -41,12 +41,15 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
         
         let stockInfo = presenter.stocksInfo?[indexPath.row]
         cell.configure(with: stockInfo!, at: indexPath.row)
-        
+        //presenter.loadImageFromURL(from: <#T##URL#>)
+        //let image = presenter.images?[indexPath.row]
+        //cell.configureImage(with: image!)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 76
+        
     }
     
     
@@ -61,7 +64,8 @@ extension MainViewController: MainViewProtocol{
     func failure(error: Error) {
         print(error.localizedDescription)
     }
-    
+     
+
     
 }
 

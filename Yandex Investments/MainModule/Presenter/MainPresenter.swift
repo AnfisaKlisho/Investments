@@ -44,7 +44,7 @@ class MainPresenter: MainViewPresenterProtocol{
     }
     
     func getStocksInfo() {
-        networkService.getListOfCompanies(50) { [weak self] (result) in
+        networkService.getListOfCompanies(20) { [weak self] (result) in
             guard let self = self else{
                 return
             }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,8 @@
 		1B0C077925F848BF00ABFA8D /* UIColor_hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0C077825F848BF00ABFA8D /* UIColor_hex.swift */; };
 		1B0C077D25F912B300ABFA8D /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0C077C25F912B200ABFA8D /* MainPresenter.swift */; };
 		1B16A2ED2602551B00063BE0 /* MainModule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B16A2EC2602551B00063BE0 /* MainModule.storyboard */; };
+		1B16A2F02602A18600063BE0 /* DetailModule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B16A2EF2602A18600063BE0 /* DetailModule.storyboard */; };
+		1B16A2F62602B21D00063BE0 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1B16A2F52602B21D00063BE0 /* Charts */; };
 		1B201EA225FA712C004F29F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B201EA125FA712C004F29F4 /* Main.storyboard */; };
 		1B26FDCE25F82F2A00C78C47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B26FDCD25F82F2A00C78C47 /* MainViewController.swift */; };
 		1B26FDD125F8303300C78C47 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B26FDD025F8303300C78C47 /* ModuleBuilder.swift */; };
@@ -29,6 +31,7 @@
 		1B0C077825F848BF00ABFA8D /* UIColor_hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor_hex.swift; path = ../../../../Downloads/UIColor_hex.swift; sourceTree = "<group>"; };
 		1B0C077C25F912B200ABFA8D /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		1B16A2EC2602551B00063BE0 /* MainModule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainModule.storyboard; sourceTree = "<group>"; };
+		1B16A2EF2602A18600063BE0 /* DetailModule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailModule.storyboard; sourceTree = "<group>"; };
 		1B201EA125FA712C004F29F4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1B26FDCD25F82F2A00C78C47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1B26FDD025F8303300C78C47 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B16A2F62602B21D00063BE0 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +175,7 @@
 		1BEC9CEA25F040BD002998B6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1B16A2EF2602A18600063BE0 /* DetailModule.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +203,9 @@
 			dependencies = (
 			);
 			name = "Yandex Investments";
+			packageProductDependencies = (
+				1B16A2F52602B21D00063BE0 /* Charts */,
+			);
 			productName = "Yandex Investments";
 			productReference = 1BEC9CB925EEF4E0002998B6 /* Yandex Investments.app */;
 			productType = "com.apple.product-type.application";
@@ -225,6 +233,9 @@
 				Base,
 			);
 			mainGroup = 1BEC9CB025EEF4E0002998B6;
+			packageReferences = (
+				1B16A2F42602B21C00063BE0 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 1BEC9CBA25EEF4E0002998B6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -243,6 +254,7 @@
 				1B201EA225FA712C004F29F4 /* Main.storyboard in Resources */,
 				1BEC9CC625EEF4E5002998B6 /* Assets.xcassets in Resources */,
 				1B16A2ED2602551B00063BE0 /* MainModule.storyboard in Resources */,
+				1B16A2F02602A18600063BE0 /* DetailModule.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +471,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1B16A2F42602B21C00063BE0 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1B16A2F52602B21D00063BE0 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B16A2F42602B21C00063BE0 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1BEC9CB125EEF4E0002998B6 /* Project object */;
 }

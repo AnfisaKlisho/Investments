@@ -34,8 +34,8 @@ class NetworkService: NetworkServiceProtocol{
     }
     
     //MARK:-Get list of companies
-    func getListOfCompanies(_ amount: Int = 20, completion: @escaping (Result<[StockInfo], SessionError>) -> Void) {
-        var listUrlComponents = baseURL
+    func getListOfCompanies(_ amount: Int, completion: @escaping (Result<[StockInfo], SessionError>) -> Void) {
+        var listUrlComponents = testURL
         listUrlComponents.path = "/stable/stock/market/list/mostactive"
         listUrlComponents.queryItems?.append(URLQueryItem(name: "listLimit", value: "\(amount)"))
         

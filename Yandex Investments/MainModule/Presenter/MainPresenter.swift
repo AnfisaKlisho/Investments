@@ -19,6 +19,11 @@ protocol MainViewPresenterProtocol: class{
     func getImageUrls()
     var images: [UIImage]? {get set}
     func loadImagesFromUrls()
+    var imageUrls: [String]? {get set}
+    var favourites: [StockInfo] {get set}
+    var stocks: [StockInfo]? {get set}
+    func showFavourites()
+    func showStocks()
 }
 
 class MainPresenter: MainViewPresenterProtocol{
@@ -26,7 +31,9 @@ class MainPresenter: MainViewPresenterProtocol{
     let networkService: NetworkServiceProtocol!
     var stocksInfo: [StockInfo]?
     var images: [UIImage]?
-    var imageUrls: [URL]?
+    var imageUrls: [String]?
+    var favourites: [StockInfo] = []
+    var stocks: [StockInfo]?
     
     required init(view: MainViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
@@ -43,10 +50,13 @@ class MainPresenter: MainViewPresenterProtocol{
             }
             switch result{
             case .success(let stocksInfo):
-                self.stocksInfo = stocksInfo
+                self.stocks = stocksInfo
+                self.stocksInfo = self.stocks
+                //self.view?.success()
+                //self.getImageUrls()
+                //self.loadImagesFromUrls()
+                //self.getImageUrls()
                 self.view?.success()
-                //self.getImageUrls()
-                //self.getImageUrls()
             case .failure(let error):
                 self.view?.failure(error: error)
             }
@@ -77,13 +87,29 @@ class MainPresenter: MainViewPresenterProtocol{
                     self.images?.append(image)
                     self.view?.success()
                 case .failure(let error):
-                    self.images?.append(UIImage(named: "color-light-gray")!)
+                    //self.images?.append(UIImage(named: "color-light-gray")!)
                     print(error)
                 }
         }
             
         }
     }
+    
+    func showFavourites(){
+        stocksInfo = favourites
+        self.view?.success()
+    }
+    
+    func showStocks(){
+        stocksInfo = stocks
+        self.view?.success()
+    }
+    
+    func addToFavourites(){
+        
+    }
+    
+    
     
     
 }

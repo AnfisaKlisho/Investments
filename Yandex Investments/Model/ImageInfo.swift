@@ -8,5 +8,5 @@
 import Foundation
 
 struct ImageInfo: Decodable{
-    var url: URL
+    var url: String
 }

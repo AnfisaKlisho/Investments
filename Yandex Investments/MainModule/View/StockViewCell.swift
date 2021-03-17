@@ -23,6 +23,8 @@ class StockViewCell: UITableViewCell {
   
     @IBOutlet weak var companyIcon: UIImageView!
     
+    @IBOutlet weak var starButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -40,6 +42,12 @@ class StockViewCell: UITableViewCell {
     }
     
     
+    @IBAction func starButtonClicked(_ sender: Any) {
+        
+    }
+    
+    
+    //MARK:- Configure Cell
     func configure(with stockInfo: StockInfo, at indexPath: Int){
         view.layer.cornerRadius = 16
         tickerLabel.text = stockInfo.symbol
@@ -65,6 +73,7 @@ class StockViewCell: UITableViewCell {
     
     }
     
+    //MARK:-Configure Image in Cell
     func configureImage(with image: UIImage){
         companyIcon.image = image
     }

@@ -7,10 +7,13 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UISearchBarDelegate {
 
     var presenter: MainViewPresenterProtocol!
     
+    @IBOutlet weak var stocksButton: UIButton!
+    
+    @IBOutlet weak var favouriteButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,11 +25,54 @@ class MainViewController: UIViewController {
     func configure(){
         tableView.delegate = self
         tableView.dataSource = self
+        setupSearchController()
+        setupButtons()
+    }
+    
+    private func setupSearchController(){
+        let searchC = UISearchController(searchResultsController: nil)
+        searchC.searchBar.placeholder = "Find company or ticker"
+        searchC.searchBar.returnKeyType = .search
+        searchC.searchBar.delegate = self
+        searchC.obscuresBackgroundDuringPresentation = false
+        searchC.searchBar.autocorrectionType = .yes
+        navigationItem.searchController = searchC
+    }
+    
+    private func setupButtons(){
+        stocksButton.setTitleColor(.black, for: .selected)
+        stocksButton.setTitleColor(.lightGray, for: .normal)
+        favouriteButton.setTitleColor(.black, for: .selected)
+        favouriteButton.setTitleColor(.lightGray, for: .normal)
+        stocksButton.isSelected = true
         
     }
     
+    @IBAction func stocksButtonClicked(_ sender: Any) {
+        setHightlightedState(for: stocksButton)
+        setNormalState(for: favouriteButton)
+        
+    }
   
-
+    @IBAction func favouriteButtonClicked(_ sender: Any) {
+        setHightlightedState(for: favouriteButton)
+        setNormalState(for: stocksButton)
+        presenter.showFavourites()
+    }
+    
+    private func setHightlightedState(for button: UIButton){
+        button.isSelected = true
+        button.titleLabel?.textColor = UIColor.black
+        button.titleLabel?.font = UIFont(name: "Verdana Bold", size: 28)
+        presenter.showStocks()
+    }
+    
+    private func setNormalState(for button: UIButton){
+        button.isSelected = false
+        button.titleLabel?.textColor = UIColor.lightGray
+        button.titleLabel?.font = UIFont(name: "Verdana Bold", size: 18)
+    }
+    
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate{
@@ -63,9 +109,11 @@ extension MainViewController: MainViewProtocol{
     //MARK:-MAKE ALERT
     func failure(error: Error) {
         print(error.localizedDescription)
+        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true, completion: nil)
     }
      
-
     
 }
 

@@ -12,7 +12,7 @@ protocol NetworkServiceProtocol{
     
     func getListOfCompanies(_ amount: Int, completion: @escaping (Result<[StockInfo], SessionError>) -> Void)
     func getLogoUrl(for symbol: String, completion: @escaping (Result<ImageInfo, SessionError>) -> Void)
-    func getLogoImage(for url: URL?, completion: @escaping (Result<UIImage, SessionError>) -> Void)
+    func getLogoImage(for url: String, completion: @escaping (Result<UIImage, SessionError>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol{
@@ -56,9 +56,10 @@ class NetworkService: NetworkServiceProtocol{
     }
     
     //MARK:-Get Logo Image
-    func getLogoImage(for url: URL?, completion: @escaping (Result<UIImage, SessionError>) -> Void){
-        guard let url = url else{
-            completion(.failure(.invalidURL))
+    func getLogoImage(for url: String, completion: @escaping (Result<UIImage, SessionError>) -> Void){
+        guard let url = URL(string: url) else{
+            //completion(.failure(.invalidURL))
+            completion(.success(UIImage(named: "color-light-grey")!))
             return
         }
         

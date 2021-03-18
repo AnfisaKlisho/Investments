@@ -10,6 +10,7 @@ import UIKit
 protocol MainViewProtocol: class{
     func success()
     func failure(error: Error)
+    func showDetailedVC(stock: StockInfo, data: [DayInfo])
 }
 
 protocol MainViewPresenterProtocol: class{
@@ -24,6 +25,8 @@ protocol MainViewPresenterProtocol: class{
     var stocks: [StockInfo]? {get set}
     func showFavourites()
     func showStocks()
+    func didTapOnStock(stock: StockInfo)
+    
 }
 
 class MainPresenter: MainViewPresenterProtocol{
@@ -34,6 +37,7 @@ class MainPresenter: MainViewPresenterProtocol{
     var imageUrls: [String]?
     var favourites: [StockInfo] = []
     var stocks: [StockInfo]?
+    var historicalData: [DayInfo]?
     
     required init(view: MainViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
@@ -69,7 +73,7 @@ class MainPresenter: MainViewPresenterProtocol{
                 switch result{
                 case .success(let imageInfo):
                     self.imageUrls?.append(imageInfo.url)
-                    //self.loadImagesFromUrls()
+                    self.loadImagesFromUrls()
                 case .failure(let error):
                     print(error)
         }
@@ -105,7 +109,17 @@ class MainPresenter: MainViewPresenterProtocol{
         self.view?.success()
     }
     
-    func addToFavourites(){
+    func didTapOnStock(stock: StockInfo){
+        networkService.getHistoricalData(for: stock.symbol) { (result) in
+            switch result{
+            case .success(let info):
+                self.historicalData = info
+                self.view?.showDetailedVC(stock: stock, data: info)
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
         
     }
     

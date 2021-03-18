@@ -27,6 +27,7 @@ class MainViewController: UIViewController, UISearchBarDelegate {
         tableView.dataSource = self
         setupSearchController()
         setupButtons()
+        //presenter.getImageUrls()
     }
     
     private func setupSearchController(){
@@ -73,6 +74,11 @@ class MainViewController: UIViewController, UISearchBarDelegate {
         button.titleLabel?.font = UIFont(name: "Verdana Bold", size: 18)
     }
     
+    func showDetailedVC(stock: StockInfo, data: [DayInfo]){
+        let detailViewController = ModuleBuilder.createDetailModule(stock: stock, historicalData: data)
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
+    
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate{
@@ -115,5 +121,14 @@ extension MainViewController: MainViewProtocol{
     }
      
     
+}
+
+extension MainViewController{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let stock = presenter.stocksInfo?[indexPath.row]
+        //navigationController?.pushViewController(detailViewController, animated: true)
+        presenter.didTapOnStock(stock: stock!)
+    }
 }
 

@@ -13,6 +13,7 @@ protocol NetworkServiceProtocol{
     func getListOfCompanies(_ amount: Int, completion: @escaping (Result<[StockInfo], SessionError>) -> Void)
     func getLogoUrl(for symbol: String, completion: @escaping (Result<ImageInfo, SessionError>) -> Void)
     func getLogoImage(for url: String, completion: @escaping (Result<UIImage, SessionError>) -> Void)
+    func getHistoricalData(for symbol: String, completion: @escaping (Result<[DayInfo], SessionError>) -> Void)
 }
 
 class NetworkService: NetworkServiceProtocol{
@@ -46,7 +47,7 @@ class NetworkService: NetworkServiceProtocol{
     
     //MARK:- Get Logo URL
     func getLogoUrl(for symbol: String, completion: @escaping (Result<ImageInfo, SessionError>) -> Void){
-        var logoUrlComponents = baseURL
+        var logoUrlComponents = testURL
         logoUrlComponents.path = "/v1/stock/\(symbol.lowercased())/logo"
         //print(logoUrlComponents.url)
         
@@ -82,6 +83,18 @@ class NetworkService: NetworkServiceProtocol{
                 completion(.success(image))
             }
         }.resume()
+    }
+    
+    //MARK:- Get Historical Data
+    func getHistoricalData(for symbol: String, completion: @escaping (Result<[DayInfo], SessionError>) -> Void){
+        var dayUrlComponents = testURL
+        dayUrlComponents.path = "/v1/stock/\(symbol)/chart/1m"
+        dayUrlComponents.queryItems?.append(URLQueryItem(name: "chartByDay", value: "true"))
+        
+        get(type: [DayInfo].self, from: dayUrlComponents) { (result) in
+            completion(result)
+        }
+        
     }
     
     //MARK:- Get Request

@@ -13,6 +13,10 @@
 		1B16A2ED2602551B00063BE0 /* MainModule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B16A2EC2602551B00063BE0 /* MainModule.storyboard */; };
 		1B16A2F02602A18600063BE0 /* DetailModule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B16A2EF2602A18600063BE0 /* DetailModule.storyboard */; };
 		1B16A2F62602B21D00063BE0 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1B16A2F52602B21D00063BE0 /* Charts */; };
+		1B16A32B2602CB0100063BE0 /* DayInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16A32A2602CB0100063BE0 /* DayInfo.swift */; };
+		1B16A3302602CD5500063BE0 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 1B16A32F2602CD5500063BE0 /* TinyConstraints */; };
+		1B16A3332602CDDC00063BE0 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16A3322602CDDC00063BE0 /* DetailPresenter.swift */; };
+		1B16A3362602CF9D00063BE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16A3352602CF9D00063BE0 /* DetailViewController.swift */; };
 		1B201EA225FA712C004F29F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B201EA125FA712C004F29F4 /* Main.storyboard */; };
 		1B26FDCE25F82F2A00C78C47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B26FDCD25F82F2A00C78C47 /* MainViewController.swift */; };
 		1B26FDD125F8303300C78C47 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B26FDD025F8303300C78C47 /* ModuleBuilder.swift */; };
@@ -32,6 +36,9 @@
 		1B0C077C25F912B200ABFA8D /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		1B16A2EC2602551B00063BE0 /* MainModule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainModule.storyboard; sourceTree = "<group>"; };
 		1B16A2EF2602A18600063BE0 /* DetailModule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailModule.storyboard; sourceTree = "<group>"; };
+		1B16A32A2602CB0100063BE0 /* DayInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayInfo.swift; sourceTree = "<group>"; };
+		1B16A3322602CDDC00063BE0 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		1B16A3352602CF9D00063BE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		1B201EA125FA712C004F29F4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1B26FDCD25F82F2A00C78C47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1B26FDD025F8303300C78C47 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
@@ -53,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B16A2F62602B21D00063BE0 /* Charts in Frameworks */,
+				1B16A3302602CD5500063BE0 /* TinyConstraints in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +72,7 @@
 			children = (
 				1BEC9CE225F036B9002998B6 /* StockInfo.swift */,
 				1B512AB125FC169500782F95 /* ImageInfo.swift */,
+				1B16A32A2602CB0100063BE0 /* DayInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				1B16A2EF2602A18600063BE0 /* DetailModule.storyboard */,
+				1B16A3352602CF9D00063BE0 /* DetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -183,6 +193,7 @@
 		1BEC9CEB25F040C4002998B6 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				1B16A3322602CDDC00063BE0 /* DetailPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -205,6 +216,7 @@
 			name = "Yandex Investments";
 			packageProductDependencies = (
 				1B16A2F52602B21D00063BE0 /* Charts */,
+				1B16A32F2602CD5500063BE0 /* TinyConstraints */,
 			);
 			productName = "Yandex Investments";
 			productReference = 1BEC9CB925EEF4E0002998B6 /* Yandex Investments.app */;
@@ -235,6 +247,7 @@
 			mainGroup = 1BEC9CB025EEF4E0002998B6;
 			packageReferences = (
 				1B16A2F42602B21C00063BE0 /* XCRemoteSwiftPackageReference "Charts" */,
+				1B16A32E2602CD5500063BE0 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
 			);
 			productRefGroup = 1BEC9CBA25EEF4E0002998B6 /* Products */;
 			projectDirPath = "";
@@ -274,8 +287,11 @@
 				1B512AB225FC169500782F95 /* ImageInfo.swift in Sources */,
 				1B26FDD125F8303300C78C47 /* ModuleBuilder.swift in Sources */,
 				1B0C077525F8398F00ABFA8D /* StockViewCell.swift in Sources */,
+				1B16A32B2602CB0100063BE0 /* DayInfo.swift in Sources */,
+				1B16A3332602CDDC00063BE0 /* DetailPresenter.swift in Sources */,
 				1BEC9CBF25EEF4E0002998B6 /* SceneDelegate.swift in Sources */,
 				1BEC9CE025F02993002998B6 /* SessionError.swift in Sources */,
+				1B16A3362602CF9D00063BE0 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +497,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		1B16A32E2602CD5500063BE0 /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roberthein/TinyConstraints.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -488,6 +512,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B16A2F42602B21C00063BE0 /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
+		};
+		1B16A32F2602CD5500063BE0 /* TinyConstraints */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B16A32E2602CD5500063BE0 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
+			productName = TinyConstraints;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

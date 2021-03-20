@@ -9,7 +9,7 @@ import UIKit
 
 protocol Builder{
     static func createMainModule() -> UIViewController
-    static func createDetailModule(stock: StockInfo, historicalData: [DayInfo]) -> UIViewController
+    static func createDetailModule(stock: StockInfo) -> UIViewController
 }
 
 
@@ -23,10 +23,10 @@ class ModuleBuilder: Builder {
         return view
     }
     
-    static func createDetailModule(stock: StockInfo, historicalData: [DayInfo]) -> UIViewController {
+    static func createDetailModule(stock: StockInfo) -> UIViewController {
         let networkService = NetworkService()
         let view = UIStoryboard(name: "DetailModule", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        let presenter = DetailPresenter(view: view, networkService: networkService, stock: stock, historicalData: historicalData)
+        let presenter = DetailPresenter(view: view, networkService: networkService, stock: stock)
         view.presenter = presenter
         return view
     }

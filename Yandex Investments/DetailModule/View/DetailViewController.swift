@@ -17,10 +17,13 @@ class DetailViewController: UIViewController {
     lazy var lineChartView: LineChartView = {
         let chartView = LineChartView()
         chartView.backgroundColor = .white
+        //chartView.doubleTapToZoomEnabled = false
+        //chartView.pinchZoomEnabled = false
+        chartView.setScaleEnabled(false)
 
         chartView.rightAxis.enabled = false
         chartView.legend.enabled = false
- 
+        
         let yAxis = chartView.leftAxis
         yAxis.drawAxisLineEnabled = false
         yAxis.drawLabelsEnabled = false
@@ -31,7 +34,7 @@ class DetailViewController: UIViewController {
         chartView.xAxis.drawAxisLineEnabled = false
         chartView.xAxis.drawLabelsEnabled = false
 
-        chartView.animate(xAxisDuration: 2.5)
+        chartView.animate(xAxisDuration: 2)
 
         return chartView
     }()
@@ -39,19 +42,18 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(lineChartView)
-        lineChartView.centerInSuperview()
-        lineChartView.width(to: view)
-        lineChartView.heightToWidth(of: view)
-        
-        setData()
+        presenter.viewDidLoad(self)
+    
        
     }
     
+  
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         print(entry)
     }
     
+    
+    //MARK:-Change
     func setData(){
         var yValues: [ChartDataEntry] = []
         var i = 0
@@ -81,7 +83,15 @@ class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: DetailViewProtocol{
-    
+    func success(){
+        view.addSubview(lineChartView)
+        lineChartView.centerInSuperview()
+        lineChartView.width(to: view)
+        lineChartView.heightToWidth(of: view)
+      
+        
+        setData()
+    }
 }
 
 extension DetailViewController: ChartViewDelegate{

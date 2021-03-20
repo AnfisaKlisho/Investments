@@ -47,7 +47,7 @@ class NetworkService: NetworkServiceProtocol{
     
     //MARK:- Get Logo URL
     func getLogoUrl(for symbol: String, completion: @escaping (Result<ImageInfo, SessionError>) -> Void){
-        var logoUrlComponents = testURL
+        var logoUrlComponents = baseURL
         logoUrlComponents.path = "/v1/stock/\(symbol.lowercased())/logo"
         //print(logoUrlComponents.url)
         

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StockInfo: Decodable{
+struct StockInfo: Decodable, Equatable{
     var symbol: String
     var companyName: String
     var latestPrice: Float

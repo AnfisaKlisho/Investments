@@ -19,8 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         let mainVC = ModuleBuilder.createMainModule()
-        let navBar = UINavigationController(rootViewController: mainVC)
-        window?.rootViewController = navBar
+        let navigationController = UINavigationController(rootViewController: mainVC)
+        navigationController.navigationBar.tintColor = .black
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
     }

@@ -20,6 +20,7 @@ class MainViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        presenter.viewDidLoad(self)
     }
     
     func configure(){
@@ -30,6 +31,8 @@ class MainViewController: UIViewController, UISearchBarDelegate {
         //presenter.getImageUrls()
     }
     
+    
+    //MARK:-Setup Search Controller
     private func setupSearchController(){
         let searchC = UISearchController(searchResultsController: nil)
         searchC.searchBar.placeholder = "Find company or ticker"
@@ -52,12 +55,13 @@ class MainViewController: UIViewController, UISearchBarDelegate {
     @IBAction func stocksButtonClicked(_ sender: Any) {
         setHightlightedState(for: stocksButton)
         setNormalState(for: favouriteButton)
-        
+        presenter.showStocks()
     }
   
     @IBAction func favouriteButtonClicked(_ sender: Any) {
         setHightlightedState(for: favouriteButton)
         setNormalState(for: stocksButton)
+        //presenter.addFavourite
         presenter.showFavourites()
     }
     
@@ -74,13 +78,15 @@ class MainViewController: UIViewController, UISearchBarDelegate {
         button.titleLabel?.font = UIFont(name: "Verdana Bold", size: 18)
     }
     
-    func showDetailedVC(stock: StockInfo, data: [DayInfo]){
-        let detailViewController = ModuleBuilder.createDetailModule(stock: stock, historicalData: data)
+    //MARK:-Show detailed view controller
+    func showDetailedVC(stock: StockInfo){
+        let detailViewController = ModuleBuilder.createDetailModule(stock: stock)
         navigationController?.pushViewController(detailViewController, animated: true)
     }
     
 }
 
+//MARK:-DataSource & Delegate
 extension MainViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.stocksInfo?.count ?? 0
@@ -94,8 +100,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
         let stockInfo = presenter.stocksInfo?[indexPath.row]
         cell.configure(with: stockInfo!, at: indexPath.row)
         //presenter.loadImageFromURL(from: <#T##URL#>)
+        presenter.getLogoUrl(at: indexPath.row)
         //let image = presenter.images?[indexPath.row]
         //cell.configureImage(with: image!)
+        cell.delegate = self
         return cell
     }
     
@@ -112,23 +120,55 @@ extension MainViewController: MainViewProtocol{
         tableView.reloadData()
     }
     
-    //MARK:-MAKE ALERT
     func failure(error: Error) {
         print(error.localizedDescription)
         let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true, completion: nil)
     }
+    
+    func setImage(_ image: UIImage, at index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        guard let cell = tableView.cellForRow(at: indexPath) as? StockViewCell else {
+            return
+        }
+        
+        cell.configureImage(with: image)
+        
+    }
+    
+    func changeStarButton(at index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        guard let cell = tableView.cellForRow(at: indexPath) as? StockViewCell else {
+            return
+        }
+        
+        cell.changeStarButton()
+        //tableView.reloadData()
+    }
      
     
 }
-
+//MARK:-Did Select Row At
 extension MainViewController{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //let stock = presenter.stocksInfo?[indexPath.row]
+        //presenter.didTapOnStock(at index: index.row)
+        presenter.didTapOnStock(at: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
-        let stock = presenter.stocksInfo?[indexPath.row]
-        //navigationController?.pushViewController(detailViewController, animated: true)
-        presenter.didTapOnStock(stock: stock!)
     }
+}
+
+extension MainViewController: StockViewCellDelegate{
+    func cellDidPressFavouriteButton(_ cell: StockViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        
+        presenter.cellDidPressFavouriteButton(indexPath.row)
+
+    }
+
+
 }
 

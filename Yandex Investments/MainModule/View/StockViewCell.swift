@@ -7,8 +7,12 @@
 
 import UIKit
 
-class StockViewCell: UITableViewCell {
+protocol StockViewCellDelegate: class {
+    func cellDidPressFavouriteButton(_ cell: StockViewCell)
+}
 
+class StockViewCell: UITableViewCell {
+    
     static let identifier = "StockInfoCell"
     
     @IBOutlet weak var tickerLabel: UILabel!
@@ -25,15 +29,13 @@ class StockViewCell: UITableViewCell {
     
     @IBOutlet weak var starButton: UIButton!
     
+    private var isStarHighlighted: Bool?
+    
+    weak var delegate: StockViewCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     override func layoutSubviews() {
@@ -41,14 +43,22 @@ class StockViewCell: UITableViewCell {
         super.layoutSubviews()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        companyIcon.image = nil
+    }
+    
     
     @IBAction func starButtonClicked(_ sender: Any) {
-        
+        delegate?.cellDidPressFavouriteButton(self)
     }
     
     
     //MARK:- Configure Cell
     func configure(with stockInfo: StockInfo, at indexPath: Int){
+        isStarHighlighted = false
+        starButton.setImage(UIImage(named: "greyStar"), for: .normal)
+        starButton.setImage(UIImage(named: "yellowStar"), for: .selected)
         view.layer.cornerRadius = 16
         tickerLabel.text = stockInfo.symbol
         companyNameLabel.text = stockInfo.companyName
@@ -69,6 +79,7 @@ class StockViewCell: UITableViewCell {
         else{
             view.backgroundColor = .fromHex("#FFFFFF")
         }
+        starButton.imageView?.image = UIImage(named: "greyStar")
         
     
     }
@@ -76,5 +87,16 @@ class StockViewCell: UITableViewCell {
     //MARK:-Configure Image in Cell
     func configureImage(with image: UIImage){
         companyIcon.image = image
+    }
+    
+    func changeStarButton(){
+        if !isStarHighlighted!{
+            starButton.imageView?.image = UIImage(named: "yellowStar")
+            isStarHighlighted = true
+        }
+        else{
+            starButton.imageView?.image = UIImage(named: "greyStar")
+            isStarHighlighted = false
+        }
     }
 }

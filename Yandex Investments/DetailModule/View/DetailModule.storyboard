@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -14,18 +14,123 @@
             <objects>
                 <viewController storyboardIdentifier="DetailViewController" id="1DH-Bb-vcS" customClass="DetailViewController" customModule="Yandex_Investments" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jsq-3F-cOV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6RR-t9-dcS">
+                                <rect key="frame" x="0.0" y="44" width="428" height="63"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Ticker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxD-a7-fYJ">
+                                        <rect key="frame" x="183" y="10" width="62" height="24"/>
+                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ae-Jc-sSA">
+                                        <rect key="frame" x="376" y="20.666666666666671" width="22" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="9Ae-Jc-sSA" secondAttribute="height" multiplier="1:1" id="DxB-eK-HbK"/>
+                                            <constraint firstAttribute="height" constant="22" id="JYi-3o-iwy"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="Star">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Company name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pg0-Hw-2s2">
+                                        <rect key="frame" x="166.66666666666666" y="39" width="94.999999999999972" height="14"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Pg0-Hw-2s2" firstAttribute="top" secondItem="qxD-a7-fYJ" secondAttribute="bottom" constant="5" id="4rV-ac-xIC"/>
+                                    <constraint firstItem="9Ae-Jc-sSA" firstAttribute="centerY" secondItem="6RR-t9-dcS" secondAttribute="centerY" id="NjQ-m0-hpy"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Ae-Jc-sSA" secondAttribute="trailing" constant="30" id="RR8-e8-Hm5"/>
+                                    <constraint firstAttribute="height" constant="63" id="Uoc-3a-Cac"/>
+                                    <constraint firstItem="qxD-a7-fYJ" firstAttribute="centerX" secondItem="6RR-t9-dcS" secondAttribute="centerX" id="h4T-yD-RtU"/>
+                                    <constraint firstItem="qxD-a7-fYJ" firstAttribute="top" secondItem="6RR-t9-dcS" secondAttribute="top" constant="10" id="hR2-lG-qTq"/>
+                                    <constraint firstAttribute="bottom" secondItem="Pg0-Hw-2s2" secondAttribute="bottom" constant="10" id="o39-at-MMl"/>
+                                    <constraint firstItem="Pg0-Hw-2s2" firstAttribute="centerX" secondItem="6RR-t9-dcS" secondAttribute="centerX" id="wC4-qZ-fky"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="CjX-5g-TOF">
+                                <rect key="frame" x="0.0" y="181" width="428" height="711"/>
+                                <connections>
+                                    <segue destination="BER-CD-L7F" kind="embed" id="a0a-v5-3Xl"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arv-pg-DHZ">
+                                <rect key="frame" x="20" y="127" width="56" height="34"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="18"/>
+                                <state key="normal" title="Chart">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cim-WU-gOH">
+                                <rect key="frame" x="86" y="127" width="97" height="34"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="18"/>
+                                <state key="normal" title="Summary">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U94-CA-uwY">
+                                <rect key="frame" x="193" y="127" width="56" height="34"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="18"/>
+                                <state key="normal" title="News">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9j0-Ic-gaR">
+                                <rect key="frame" x="259" y="127" width="159" height="34"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="18"/>
+                                <state key="normal" title="About">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="W7x-aK-DJv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="U94-CA-uwY" firstAttribute="leading" secondItem="cim-WU-gOH" secondAttribute="trailing" constant="10" id="46p-fi-BLe"/>
+                            <constraint firstItem="9j0-Ic-gaR" firstAttribute="leading" secondItem="U94-CA-uwY" secondAttribute="trailing" constant="10" id="5Cy-al-bqA"/>
+                            <constraint firstItem="cim-WU-gOH" firstAttribute="top" secondItem="arv-pg-DHZ" secondAttribute="top" id="719-Zx-E4f"/>
+                            <constraint firstItem="W7x-aK-DJv" firstAttribute="trailing" secondItem="6RR-t9-dcS" secondAttribute="trailing" id="8Bz-ha-CuN"/>
+                            <constraint firstItem="W7x-aK-DJv" firstAttribute="trailing" secondItem="CjX-5g-TOF" secondAttribute="trailing" id="Fc3-ZF-KRx"/>
+                            <constraint firstItem="W7x-aK-DJv" firstAttribute="bottom" secondItem="CjX-5g-TOF" secondAttribute="bottom" id="GdT-iU-ijc"/>
+                            <constraint firstItem="W7x-aK-DJv" firstAttribute="top" secondItem="6RR-t9-dcS" secondAttribute="top" id="Ilv-RA-0UQ"/>
+                            <constraint firstItem="9j0-Ic-gaR" firstAttribute="firstBaseline" secondItem="U94-CA-uwY" secondAttribute="firstBaseline" id="JYs-9z-0Ds"/>
+                            <constraint firstItem="CjX-5g-TOF" firstAttribute="top" secondItem="arv-pg-DHZ" secondAttribute="bottom" constant="20" id="LZg-Vd-R0V"/>
+                            <constraint firstItem="W7x-aK-DJv" firstAttribute="trailing" secondItem="9j0-Ic-gaR" secondAttribute="trailing" constant="10" id="MQA-Mx-PNl"/>
+                            <constraint firstItem="6RR-t9-dcS" firstAttribute="leading" secondItem="W7x-aK-DJv" secondAttribute="leading" id="Mns-aB-MLm"/>
+                            <constraint firstItem="arv-pg-DHZ" firstAttribute="top" secondItem="6RR-t9-dcS" secondAttribute="bottom" constant="20" id="U3G-Cy-qTr"/>
+                            <constraint firstItem="arv-pg-DHZ" firstAttribute="leading" secondItem="W7x-aK-DJv" secondAttribute="leading" constant="20" id="UF7-Im-EuA"/>
+                            <constraint firstItem="cim-WU-gOH" firstAttribute="firstBaseline" secondItem="arv-pg-DHZ" secondAttribute="firstBaseline" id="Wa4-cB-gx4"/>
+                            <constraint firstItem="U94-CA-uwY" firstAttribute="firstBaseline" secondItem="cim-WU-gOH" secondAttribute="firstBaseline" id="cnM-cH-4Jq"/>
+                            <constraint firstItem="CjX-5g-TOF" firstAttribute="leading" secondItem="W7x-aK-DJv" secondAttribute="leading" id="rrF-X3-O5d"/>
+                            <constraint firstItem="cim-WU-gOH" firstAttribute="leading" secondItem="arv-pg-DHZ" secondAttribute="trailing" constant="10" id="xRQ-qA-gKJ"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a1I-7d-6Gz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-295" y="2"/>
+            <point key="canvasLocation" x="-295.79439252336448" y="1.2958963282937366"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="uuH-Ri-fym">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="BER-CD-L7F" customClass="PageViewController" customModule="Yandex_Investments" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="XjV-wW-ZdG"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wzh-fF-6kY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="422" y="1"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Star" width="20" height="19"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

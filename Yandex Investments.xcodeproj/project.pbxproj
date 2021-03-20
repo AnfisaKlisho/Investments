@@ -21,6 +21,15 @@
 		1B26FDCE25F82F2A00C78C47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B26FDCD25F82F2A00C78C47 /* MainViewController.swift */; };
 		1B26FDD125F8303300C78C47 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B26FDD025F8303300C78C47 /* ModuleBuilder.swift */; };
 		1B512AB225FC169500782F95 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B512AB125FC169500782F95 /* ImageInfo.swift */; };
+		1B7E5FB226039637009A0E42 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E5FB126039637009A0E42 /* Quote.swift */; };
+		1B7E5FB52603B5F6009A0E42 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E5FB42603B5F6009A0E42 /* PageViewController.swift */; };
+		1B7E5FBD2603BC18009A0E42 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E5FBB2603BC18009A0E42 /* ChartViewController.swift */; };
+		1B7E5FBE2603BC18009A0E42 /* ChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B7E5FBC2603BC18009A0E42 /* ChartViewController.xib */; };
+		1B7E5FED2603EEA0009A0E42 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E5FEC2603EEA0009A0E42 /* MenuController.swift */; };
+		1B7E5FF02603EEC7009A0E42 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E5FEF2603EEC7009A0E42 /* MenuCell.swift */; };
+		1B7E5FF32603EEF9009A0E42 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E5FF22603EEF9009A0E42 /* SwipingViewController.swift */; };
+		1B7E5FF62603EF5B009A0E42 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E5FF52603EF5B009A0E42 /* Extensions.swift */; };
+		1B7E5FF92603EF82009A0E42 /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7E5FF82603EF82009A0E42 /* ChartCell.swift */; };
 		1BEC9CBD25EEF4E0002998B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEC9CBC25EEF4E0002998B6 /* AppDelegate.swift */; };
 		1BEC9CBF25EEF4E0002998B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEC9CBE25EEF4E0002998B6 /* SceneDelegate.swift */; };
 		1BEC9CC625EEF4E5002998B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BEC9CC525EEF4E5002998B6 /* Assets.xcassets */; };
@@ -43,6 +52,15 @@
 		1B26FDCD25F82F2A00C78C47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1B26FDD025F8303300C78C47 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		1B512AB125FC169500782F95 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
+		1B7E5FB126039637009A0E42 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		1B7E5FB42603B5F6009A0E42 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		1B7E5FBB2603BC18009A0E42 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		1B7E5FBC2603BC18009A0E42 /* ChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartViewController.xib; sourceTree = "<group>"; };
+		1B7E5FEC2603EEA0009A0E42 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		1B7E5FEF2603EEC7009A0E42 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		1B7E5FF22603EEF9009A0E42 /* SwipingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
+		1B7E5FF52603EF5B009A0E42 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1B7E5FF82603EF82009A0E42 /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
 		1BEC9CB925EEF4E0002998B6 /* Yandex Investments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yandex Investments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEC9CBC25EEF4E0002998B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BEC9CBE25EEF4E0002998B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,8 +91,21 @@
 				1BEC9CE225F036B9002998B6 /* StockInfo.swift */,
 				1B512AB125FC169500782F95 /* ImageInfo.swift */,
 				1B16A32A2602CB0100063BE0 /* DayInfo.swift */,
+				1B7E5FB126039637009A0E42 /* Quote.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1B7E5FFC2603F7D9009A0E42 /* trash */ = {
+			isa = PBXGroup;
+			children = (
+				1B7E5FEC2603EEA0009A0E42 /* MenuController.swift */,
+				1B7E5FEF2603EEC7009A0E42 /* MenuCell.swift */,
+				1B7E5FF22603EEF9009A0E42 /* SwipingViewController.swift */,
+				1B7E5FF52603EF5B009A0E42 /* Extensions.swift */,
+				1B7E5FF82603EF82009A0E42 /* ChartCell.swift */,
+			);
+			path = trash;
 			sourceTree = "<group>";
 		};
 		1BEC9CB025EEF4E0002998B6 = {
@@ -97,9 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				1B26FDD025F8303300C78C47 /* ModuleBuilder.swift */,
-				1B26FDD325F8332A00C78C47 /* Model */,
-				1BEC9CE925F040B1002998B6 /* DetailModule */,
 				1BEC9CE625F0406A002998B6 /* MainModule */,
+				1BEC9CE925F040B1002998B6 /* DetailModule */,
+				1B26FDD325F8332A00C78C47 /* Model */,
 				1BEC9CDA25EEF5E7002998B6 /* Protocols */,
 				1BEC9CD225EEF545002998B6 /* Services */,
 				1BEC9CD825EEF5B0002998B6 /* AppDelegates */,
@@ -177,6 +208,10 @@
 			children = (
 				1BEC9CEA25F040BD002998B6 /* View */,
 				1BEC9CEB25F040C4002998B6 /* Presenter */,
+				1B7E5FB42603B5F6009A0E42 /* PageViewController.swift */,
+				1B7E5FBB2603BC18009A0E42 /* ChartViewController.swift */,
+				1B7E5FBC2603BC18009A0E42 /* ChartViewController.xib */,
+				1B7E5FFC2603F7D9009A0E42 /* trash */,
 			);
 			path = DetailModule;
 			sourceTree = "<group>";
@@ -264,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BEC9CC925EEF4E5002998B6 /* LaunchScreen.storyboard in Resources */,
+				1B7E5FBE2603BC18009A0E42 /* ChartViewController.xib in Resources */,
 				1B201EA225FA712C004F29F4 /* Main.storyboard in Resources */,
 				1BEC9CC625EEF4E5002998B6 /* Assets.xcassets in Resources */,
 				1B16A2ED2602551B00063BE0 /* MainModule.storyboard in Resources */,
@@ -284,14 +320,22 @@
 				1BEC9CD425EEF585002998B6 /* NetworkService.swift in Sources */,
 				1B26FDCE25F82F2A00C78C47 /* MainViewController.swift in Sources */,
 				1B0C077D25F912B300ABFA8D /* MainPresenter.swift in Sources */,
+				1B7E5FF02603EEC7009A0E42 /* MenuCell.swift in Sources */,
 				1B512AB225FC169500782F95 /* ImageInfo.swift in Sources */,
 				1B26FDD125F8303300C78C47 /* ModuleBuilder.swift in Sources */,
+				1B7E5FBD2603BC18009A0E42 /* ChartViewController.swift in Sources */,
 				1B0C077525F8398F00ABFA8D /* StockViewCell.swift in Sources */,
+				1B7E5FED2603EEA0009A0E42 /* MenuController.swift in Sources */,
 				1B16A32B2602CB0100063BE0 /* DayInfo.swift in Sources */,
+				1B7E5FF62603EF5B009A0E42 /* Extensions.swift in Sources */,
 				1B16A3332602CDDC00063BE0 /* DetailPresenter.swift in Sources */,
 				1BEC9CBF25EEF4E0002998B6 /* SceneDelegate.swift in Sources */,
+				1B7E5FF92603EF82009A0E42 /* ChartCell.swift in Sources */,
 				1BEC9CE025F02993002998B6 /* SessionError.swift in Sources */,
+				1B7E5FB226039637009A0E42 /* Quote.swift in Sources */,
 				1B16A3362602CF9D00063BE0 /* DetailViewController.swift in Sources */,
+				1B7E5FF32603EEF9009A0E42 /* SwipingViewController.swift in Sources */,
+				1B7E5FB52603B5F6009A0E42 /* PageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

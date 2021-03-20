@@ -10,31 +10,32 @@ import UIKit
 protocol MainViewProtocol: class{
     func success()
     func failure(error: Error)
-    func showDetailedVC(stock: StockInfo, data: [DayInfo])
+    func showDetailedVC(stock: StockInfo)
+    func setImage(_ image: UIImage, at index: Int)
+    func changeStarButton(at index: Int)
 }
 
 protocol MainViewPresenterProtocol: class{
     init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
-    func getStocksInfo()
+    
     var stocksInfo: [StockInfo]? { get set}
-    func getImageUrls()
-    var images: [UIImage]? {get set}
-    func loadImagesFromUrls()
-    var imageUrls: [String]? {get set}
-    var favourites: [StockInfo] {get set}
     var stocks: [StockInfo]? {get set}
+    var favourites: [StockInfo] {get set}
+    func getStocksInfo()
+    func viewDidLoad(_ view: MainViewProtocol)
     func showFavourites()
     func showStocks()
-    func didTapOnStock(stock: StockInfo)
-    
+    func didTapOnStock(at index: Int)
+    func getLogoUrl(at index: Int)
+    func cellDidPressFavouriteButton(_ index: Int)
 }
 
 class MainPresenter: MainViewPresenterProtocol{
+    
     weak var view: MainViewProtocol?
+    
     let networkService: NetworkServiceProtocol!
     var stocksInfo: [StockInfo]?
-    var images: [UIImage]?
-    var imageUrls: [String]?
     var favourites: [StockInfo] = []
     var stocks: [StockInfo]?
     var historicalData: [DayInfo]?
@@ -42,9 +43,10 @@ class MainPresenter: MainViewPresenterProtocol{
     required init(view: MainViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
         self.networkService = networkService
+    }
+    
+    func viewDidLoad(_ view: MainViewProtocol) {
         getStocksInfo()
-        //getImageUrls()
-        //loadImagesFromUrls()
     }
     
     func getStocksInfo() {
@@ -56,10 +58,6 @@ class MainPresenter: MainViewPresenterProtocol{
             case .success(let stocksInfo):
                 self.stocks = stocksInfo
                 self.stocksInfo = self.stocks
-                //self.view?.success()
-                //self.getImageUrls()
-                //self.loadImagesFromUrls()
-                //self.getImageUrls()
                 self.view?.success()
             case .failure(let error):
                 self.view?.failure(error: error)
@@ -67,36 +65,31 @@ class MainPresenter: MainViewPresenterProtocol{
         }
     }
     
-    func getImageUrls(){
-        for stock in stocksInfo!{
-            networkService.getLogoUrl(for: stock.symbol) { (result) in
-                switch result{
-                case .success(let imageInfo):
-                    self.imageUrls?.append(imageInfo.url)
-                    self.loadImagesFromUrls()
-                case .failure(let error):
-                    print(error)
+    func getLogoUrl(at index: Int) {
+        guard let symbol = stocksInfo?[index].symbol else{
+            return
         }
-        
-            }
+        networkService.getLogoUrl(for: symbol) { (result) in
+            switch result{
+            case .success(let imageInfo):
+                self.getLogoImage(for: imageInfo.url, at: index)
+            case .failure(let error):
+                print(error)
         }
     }
+}
     
-    
-    func loadImagesFromUrls(){
-        for url in imageUrls!{
-            networkService.getLogoImage(for: url) { (result) in
-                switch result{
-                case .success(let image):
-                    self.images?.append(image)
-                    self.view?.success()
-                case .failure(let error):
-                    //self.images?.append(UIImage(named: "color-light-gray")!)
-                    print(error)
-                }
-        }
+    func getLogoImage(for url: String, at index: Int){
+        networkService.getLogoImage(for: url) { (result) in
+            switch result{
+            case .success(let image):
+                self.view?.setImage(image, at: index)
+            case .failure(let error):
+                print(error)
+            }
             
-        }
+    }
+    
     }
     
     func showFavourites(){
@@ -109,21 +102,31 @@ class MainPresenter: MainViewPresenterProtocol{
         self.view?.success()
     }
     
-    func didTapOnStock(stock: StockInfo){
-        networkService.getHistoricalData(for: stock.symbol) { (result) in
-            switch result{
-            case .success(let info):
-                self.historicalData = info
-                self.view?.showDetailedVC(stock: stock, data: info)
-            case .failure(let error):
-                print(error)
-            }
-            
+    func didTapOnStock(at index: Int){
+        guard let stock = stocksInfo?[index] else {
+            return
         }
-        
+        self.view?.showDetailedVC(stock: stock)
+         
+            }
+    
+    func cellDidPressFavouriteButton(_ index: Int){
+        guard let stock = stocksInfo?[index] else {
+            return
+        }
+        if !favourites.contains(stock){
+        favourites.append(stock)
+        view?.changeStarButton(at: index)
     }
-    
-    
+        else{
+            favourites.remove(at: index)
+            view?.success()
+            let a = favourites.contains(stock)
+            print(a)
+            view?.changeStarButton(at: index)
+        }
     
     
 }
+}
+    

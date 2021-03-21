@@ -29,7 +29,7 @@ class StockViewCell: UITableViewCell {
     
     @IBOutlet weak var starButton: UIButton!
     
-    private var isStarHighlighted: Bool?
+    //private var isStarHighlighted: Bool?
     
     weak var delegate: StockViewCellDelegate?
     
@@ -56,7 +56,7 @@ class StockViewCell: UITableViewCell {
     
     //MARK:- Configure Cell
     func configure(with stockInfo: StockInfo, at indexPath: Int){
-        isStarHighlighted = false
+        //isStarHighlighted = false
         starButton.setImage(UIImage(named: "greyStar"), for: .normal)
         starButton.setImage(UIImage(named: "yellowStar"), for: .selected)
         view.layer.cornerRadius = 16
@@ -89,14 +89,5 @@ class StockViewCell: UITableViewCell {
         companyIcon.image = image
     }
     
-    func changeStarButton(){
-        if !isStarHighlighted!{
-            starButton.imageView?.image = UIImage(named: "yellowStar")
-            isStarHighlighted = true
-        }
-        else{
-            starButton.imageView?.image = UIImage(named: "greyStar")
-            isStarHighlighted = false
-        }
-    }
+   
 }

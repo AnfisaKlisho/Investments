@@ -97,13 +97,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
             fatalError("Invalid view cell")
         }
         
+        //MARK:-Change
         let stockInfo = presenter.stocksInfo?[indexPath.row]
         cell.configure(with: stockInfo!, at: indexPath.row)
-        //presenter.loadImageFromURL(from: <#T##URL#>)
         presenter.getLogoUrl(at: indexPath.row)
-        //let image = presenter.images?[indexPath.row]
-        //cell.configureImage(with: image!)
         cell.delegate = self
+        cell.starButton.imageView?.tintColor = stockInfo!.isFavourite ? UIColor.systemYellow : .lightGray
         return cell
     }
     
@@ -137,14 +136,12 @@ extension MainViewController: MainViewProtocol{
         
     }
     
-    func changeStarButton(at index: Int) {
+  
+    
+    func updateRow(at index: Int){
         let indexPath = IndexPath(row: index, section: 0)
-        guard let cell = tableView.cellForRow(at: indexPath) as? StockViewCell else {
-            return
-        }
-        
-        cell.changeStarButton()
-        //tableView.reloadData()
+        tableView.reloadRows(at: [indexPath], with: .fade)
+
     }
      
     
@@ -152,14 +149,13 @@ extension MainViewController: MainViewProtocol{
 //MARK:-Did Select Row At
 extension MainViewController{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let stock = presenter.stocksInfo?[indexPath.row]
-        //presenter.didTapOnStock(at index: index.row)
         presenter.didTapOnStock(at: indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 extension MainViewController: StockViewCellDelegate{
+    
     func cellDidPressFavouriteButton(_ cell: StockViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {
             return
@@ -168,7 +164,8 @@ extension MainViewController: StockViewCellDelegate{
         presenter.cellDidPressFavouriteButton(indexPath.row)
 
     }
-
+    
+    
 
 }
 

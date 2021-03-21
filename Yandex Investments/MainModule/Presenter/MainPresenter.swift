@@ -12,7 +12,7 @@ protocol MainViewProtocol: class{
     func failure(error: Error)
     func showDetailedVC(stock: StockInfo)
     func setImage(_ image: UIImage, at index: Int)
-    func changeStarButton(at index: Int)
+    func updateRow(at index: Int)
 }
 
 protocol MainViewPresenterProtocol: class{
@@ -111,19 +111,25 @@ class MainPresenter: MainViewPresenterProtocol{
             }
     
     func cellDidPressFavouriteButton(_ index: Int){
-        guard let stock = stocksInfo?[index] else {
+        guard var stock = stocksInfo?[index] else {
             return
         }
-        if !favourites.contains(stock){
-        favourites.append(stock)
-        view?.changeStarButton(at: index)
+        if !stock.isFavourite{
+            stock.isFavourite = true
+            favourites.append(stock)
+            stocks![index].isFavourite = true
+            stocksInfo![index].isFavourite = true
+            view?.updateRow(at: index)
     }
         else{
-            favourites.remove(at: index)
-            view?.success()
-            let a = favourites.contains(stock)
-            print(a)
-            view?.changeStarButton(at: index)
+            guard let favIndex = favourites.firstIndex(of: stock) else {return}
+            favourites.remove(at: favIndex)
+            guard let stockIndex = stocks?.firstIndex(of: stock) else {
+                return
+            }
+            stocks![stockIndex].isFavourite = false
+            stocksInfo![index].isFavourite = false
+            view?.updateRow(at: index)
         }
     
     

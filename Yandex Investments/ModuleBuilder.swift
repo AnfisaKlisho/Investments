@@ -31,6 +31,22 @@ class ModuleBuilder: Builder {
         return view
     }
     
+    static func createChartModule(stock: StockInfo, historicalData: [DayInfo]) -> UIViewController{
+        let view = UIStoryboard(name: "Chart", bundle: nil).instantiateViewController(identifier: "ChartViewController") as! ChartViewController
+        let presenter = ChartPresenter(view: view, stock: stock, historicalData: historicalData)
+        view.presenter = presenter
+        return view
+    }
+    
+    static func createSummaryModule(stock: StockInfo) -> UIViewController{
+        let view = UIStoryboard(name: "Summary", bundle: nil).instantiateViewController(identifier: "SummaryTableViewController") as! SummaryTableViewController
+        let networkService = NetworkService()
+        let presenter = SummaryPresenter(view: view, networkService: networkService, stock: stock)
+        view.presenter = presenter
+        return view
+        
+    }
+    
     
     
 }

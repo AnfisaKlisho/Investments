@@ -8,20 +8,21 @@
 import Foundation
 
 protocol DetailViewProtocol: class {
-    func success()
+    func createPageController()
 }
 
 protocol DetailViewPresenterProtocol: class{
     init(view: DetailViewProtocol, networkService: NetworkServiceProtocol, stock: StockInfo?)
     var historicalData: [DayInfo]? {get set}
     var stock: StockInfo? {get set}
+    //var networkService: NetworkServiceProtocol!
     func viewDidLoad(_ view: DetailViewProtocol)
     
 }
 
 class DetailPresenter: DetailViewPresenterProtocol {
     func viewDidLoad(_ view: DetailViewProtocol) {
-        loadHistoricalData(stock: stock)
+        loadHistoricalData()
     }
     
     weak var view: DetailViewProtocol?
@@ -36,7 +37,7 @@ class DetailPresenter: DetailViewPresenterProtocol {
         self.stock = stock
     }
 
-    func loadHistoricalData(stock: StockInfo?){
+    func loadHistoricalData(){
         guard let symbol = stock?.symbol else{
             return
         }
@@ -44,13 +45,16 @@ class DetailPresenter: DetailViewPresenterProtocol {
             switch result{
             case .success(let info):
                 self.historicalData = info
-                self.view?.success()
+                self.view?.createPageController()
+                //self.view?.success()
             case .failure(let error):
                 print(error)
         }
         }
         
     }
+    
+    
     //public 
     
     

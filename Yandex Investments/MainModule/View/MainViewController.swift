@@ -17,6 +17,17 @@ class MainViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
+//    private let tableRefreshControl: UIRefreshControl = {
+//        let refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+//        return refreshControl
+//    }()
+    
+//    @objc func refresh(sender: UIRefreshControl){
+//        tableView.reloadData()
+//        sender.endRefreshing()
+//    }
+//
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -27,9 +38,10 @@ class MainViewController: UIViewController, UISearchBarDelegate {
     func configure(){
         tableView.delegate = self
         tableView.dataSource = self
+        //tableView.refreshControl = tableRefreshControl
+
         setupSearchController()
         setupButtons()
-        //presenter.getImageUrls()
     }
     
     
@@ -99,9 +111,8 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
             fatalError("Invalid view cell")
         }
         
-        //MARK:-Change
+       
         let stockInfo = presenter.getStockInfoForCell(at: indexPath.row)
-        
         cell.configure(with: stockInfo, at: indexPath.row)
         presenter.getLogoUrl(at: indexPath.row)
         cell.delegate = self
@@ -127,9 +138,7 @@ extension MainViewController: MainViewProtocol{
     //MARK:- Failure (show alert)
     func failure(error: Error) {
         print(error.localizedDescription)
-        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true, completion: nil)
+        showAlert(error)
     }
     
     
@@ -173,8 +182,7 @@ extension MainViewController: StockViewCellDelegate{
         presenter.cellDidPressFavouriteButton(indexPath.row)
 
     }
-    
-    
+
 
 }
 

@@ -121,7 +121,10 @@ class MainPresenter: MainViewPresenterProtocol{
     
     //MARK:-Get stock info for cell
     func getStockInfoForCell(at index: Int) -> StockInfo{
-       
+        //MARK:-Change force unwrap
+//        guard let stock = stocksInfo?[index] else {
+//            return
+//        }
         return stocksInfo![index]
     }
 }

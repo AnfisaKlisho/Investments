@@ -23,6 +23,7 @@ class MainViewController: UIViewController, UISearchBarDelegate {
         presenter.viewDidLoad(self)
     }
     
+    //MARK:-Configure
     func configure(){
         tableView.delegate = self
         tableView.dataSource = self
@@ -43,6 +44,7 @@ class MainViewController: UIViewController, UISearchBarDelegate {
         navigationItem.searchController = searchC
     }
     
+    //MARK:- SetUp buttons
     private func setupButtons(){
         stocksButton.setTitleColor(.black, for: .selected)
         stocksButton.setTitleColor(.lightGray, for: .normal)
@@ -61,7 +63,6 @@ class MainViewController: UIViewController, UISearchBarDelegate {
     @IBAction func favouriteButtonClicked(_ sender: Any) {
         setHightlightedState(for: favouriteButton)
         setNormalState(for: stocksButton)
-        //presenter.addFavourite
         presenter.showFavourites()
     }
     
@@ -88,6 +89,7 @@ class MainViewController: UIViewController, UISearchBarDelegate {
 
 //MARK:-DataSource & Delegate
 extension MainViewController: UITableViewDataSource, UITableViewDelegate{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.stocksInfo?.count ?? 0
     }
@@ -98,11 +100,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
         }
         
         //MARK:-Change
-        let stockInfo = presenter.stocksInfo?[indexPath.row]
-        cell.configure(with: stockInfo!, at: indexPath.row)
+        let stockInfo = presenter.getStockInfoForCell(at: indexPath.row)
+        
+        cell.configure(with: stockInfo, at: indexPath.row)
         presenter.getLogoUrl(at: indexPath.row)
         cell.delegate = self
-        cell.starButton.imageView?.tintColor = stockInfo!.isFavourite ? UIColor.systemYellow : .lightGray
+        cell.starButton.imageView?.tintColor = stockInfo.isFavourite ? UIColor.systemYellow : .lightGray
         return cell
     }
     
@@ -115,10 +118,13 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
 }
 
 extension MainViewController: MainViewProtocol{
+    
+    //MARK:- Success (table view reload data)
     func success() {
         tableView.reloadData()
     }
     
+    //MARK:- Failure (show alert)
     func failure(error: Error) {
         print(error.localizedDescription)
         let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
@@ -126,6 +132,8 @@ extension MainViewController: MainViewProtocol{
         present(alert, animated: true, completion: nil)
     }
     
+    
+    //MARK:- Set image for cell
     func setImage(_ image: UIImage, at index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
         guard let cell = tableView.cellForRow(at: indexPath) as? StockViewCell else {
@@ -137,7 +145,7 @@ extension MainViewController: MainViewProtocol{
     }
     
   
-    
+    //MARK:-Update Row
     func updateRow(at index: Int){
         let indexPath = IndexPath(row: index, section: 0)
         tableView.reloadRows(at: [indexPath], with: .fade)
@@ -154,6 +162,7 @@ extension MainViewController{
     }
 }
 
+//MARK:- StockViewCell Delegate
 extension MainViewController: StockViewCellDelegate{
     
     func cellDidPressFavouriteButton(_ cell: StockViewCell) {

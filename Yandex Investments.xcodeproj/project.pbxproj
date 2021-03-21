@@ -17,6 +17,9 @@
 		1B16A3302602CD5500063BE0 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = 1B16A32F2602CD5500063BE0 /* TinyConstraints */; };
 		1B16A3332602CDDC00063BE0 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16A3322602CDDC00063BE0 /* DetailPresenter.swift */; };
 		1B16A3362602CF9D00063BE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B16A3352602CF9D00063BE0 /* DetailViewController.swift */; };
+		1B1B94752607667000C0B142 /* Parchment in Frameworks */ = {isa = PBXBuildFile; productRef = 1B1B94742607667000C0B142 /* Parchment */; };
+		1B1B947926076DB000C0B142 /* MainViewPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1B947826076DB000C0B142 /* MainViewPresenterProtocol.swift */; };
+		1B1B947C26076DF000C0B142 /* MainViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1B947B26076DF000C0B142 /* MainViewProtocol.swift */; };
 		1B201EA225FA712C004F29F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B201EA125FA712C004F29F4 /* Main.storyboard */; };
 		1B26FDCE25F82F2A00C78C47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B26FDCD25F82F2A00C78C47 /* MainViewController.swift */; };
 		1B26FDD125F8303300C78C47 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B26FDD025F8303300C78C47 /* ModuleBuilder.swift */; };
@@ -48,6 +51,8 @@
 		1B16A32A2602CB0100063BE0 /* DayInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayInfo.swift; sourceTree = "<group>"; };
 		1B16A3322602CDDC00063BE0 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		1B16A3352602CF9D00063BE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		1B1B947826076DB000C0B142 /* MainViewPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPresenterProtocol.swift; sourceTree = "<group>"; };
+		1B1B947B26076DF000C0B142 /* MainViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocol.swift; sourceTree = "<group>"; };
 		1B201EA125FA712C004F29F4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1B26FDCD25F82F2A00C78C47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1B26FDD025F8303300C78C47 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
@@ -77,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B1B94752607667000C0B142 /* Parchment in Frameworks */,
 				1B16A2F62602B21D00063BE0 /* Charts in Frameworks */,
 				1B16A3302602CD5500063BE0 /* TinyConstraints in Frameworks */,
 			);
@@ -85,6 +91,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B1B947726076D9A00C0B142 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1B1B947826076DB000C0B142 /* MainViewPresenterProtocol.swift */,
+				1B1B947B26076DF000C0B142 /* MainViewProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		1B26FDD325F8332A00C78C47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +194,7 @@
 		1BEC9CE625F0406A002998B6 /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				1B1B947726076D9A00C0B142 /* Protocols */,
 				1BEC9CE825F0409A002998B6 /* View */,
 				1BEC9CE725F04074002998B6 /* Presenter */,
 			);
@@ -252,6 +268,7 @@
 			packageProductDependencies = (
 				1B16A2F52602B21D00063BE0 /* Charts */,
 				1B16A32F2602CD5500063BE0 /* TinyConstraints */,
+				1B1B94742607667000C0B142 /* Parchment */,
 			);
 			productName = "Yandex Investments";
 			productReference = 1BEC9CB925EEF4E0002998B6 /* Yandex Investments.app */;
@@ -283,6 +300,7 @@
 			packageReferences = (
 				1B16A2F42602B21C00063BE0 /* XCRemoteSwiftPackageReference "Charts" */,
 				1B16A32E2602CD5500063BE0 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+				1B1B94732607667000C0B142 /* XCRemoteSwiftPackageReference "Parchment" */,
 			);
 			productRefGroup = 1BEC9CBA25EEF4E0002998B6 /* Products */;
 			projectDirPath = "";
@@ -315,7 +333,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BEC9CE325F036B9002998B6 /* StockInfo.swift in Sources */,
+				1B1B947926076DB000C0B142 /* MainViewPresenterProtocol.swift in Sources */,
 				1BEC9CBD25EEF4E0002998B6 /* AppDelegate.swift in Sources */,
+				1B1B947C26076DF000C0B142 /* MainViewProtocol.swift in Sources */,
 				1B0C077925F848BF00ABFA8D /* UIColor_hex.swift in Sources */,
 				1BEC9CD425EEF585002998B6 /* NetworkService.swift in Sources */,
 				1B26FDCE25F82F2A00C78C47 /* MainViewController.swift in Sources */,
@@ -549,6 +569,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		1B1B94732607667000C0B142 /* XCRemoteSwiftPackageReference "Parchment" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rechsteiner/Parchment";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -561,6 +589,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B16A32E2602CD5500063BE0 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
 			productName = TinyConstraints;
+		};
+		1B1B94742607667000C0B142 /* Parchment */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1B1B94732607667000C0B142 /* XCRemoteSwiftPackageReference "Parchment" */;
+			productName = Parchment;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

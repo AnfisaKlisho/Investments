@@ -7,29 +7,6 @@
 
 import UIKit
 
-protocol MainViewProtocol: class{
-    func success()
-    func failure(error: Error)
-    func showDetailedVC(stock: StockInfo)
-    func setImage(_ image: UIImage, at index: Int)
-    func updateRow(at index: Int)
-}
-
-protocol MainViewPresenterProtocol: class{
-    init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
-    
-    var stocksInfo: [StockInfo]? { get set}
-    var stocks: [StockInfo]? {get set}
-    var favourites: [StockInfo] {get set}
-    func getStocksInfo()
-    func viewDidLoad(_ view: MainViewProtocol)
-    func showFavourites()
-    func showStocks()
-    func didTapOnStock(at index: Int)
-    func getLogoUrl(at index: Int)
-    func cellDidPressFavouriteButton(_ index: Int)
-}
-
 class MainPresenter: MainViewPresenterProtocol{
     
     weak var view: MainViewProtocol?
@@ -49,6 +26,7 @@ class MainPresenter: MainViewPresenterProtocol{
         getStocksInfo()
     }
     
+    //MARK:- Get Stocks info
     func getStocksInfo() {
         networkService.getListOfCompanies(20) { [weak self] (result) in
             guard let self = self else{
@@ -65,6 +43,7 @@ class MainPresenter: MainViewPresenterProtocol{
         }
     }
     
+    //MARK:- Get logo url
     func getLogoUrl(at index: Int) {
         guard let symbol = stocksInfo?[index].symbol else{
             return
@@ -79,6 +58,7 @@ class MainPresenter: MainViewPresenterProtocol{
     }
 }
     
+    //MARK:- Get logo image
     func getLogoImage(for url: String, at index: Int){
         networkService.getLogoImage(for: url) { (result) in
             switch result{
@@ -92,16 +72,19 @@ class MainPresenter: MainViewPresenterProtocol{
     
     }
     
+    //MARK:-Show favourite list
     func showFavourites(){
         stocksInfo = favourites
         self.view?.success()
     }
     
+    //MARK:-Show all stocks list
     func showStocks(){
         stocksInfo = stocks
         self.view?.success()
     }
     
+    //MARK:-Did tap on stock
     func didTapOnStock(at index: Int){
         guard let stock = stocksInfo?[index] else {
             return
@@ -110,6 +93,7 @@ class MainPresenter: MainViewPresenterProtocol{
          
             }
     
+    //MARK:- Cell did press favourite button
     func cellDidPressFavouriteButton(_ index: Int){
         guard var stock = stocksInfo?[index] else {
             return
@@ -134,5 +118,11 @@ class MainPresenter: MainViewPresenterProtocol{
     
     
 }
+    
+    //MARK:-Get stock info for cell
+    func getStockInfoForCell(at index: Int) -> StockInfo{
+       
+        return stocksInfo![index]
+    }
 }
     

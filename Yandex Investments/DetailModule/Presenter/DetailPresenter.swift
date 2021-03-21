@@ -7,19 +7,6 @@
 
 import Foundation
 
-protocol DetailViewProtocol: class {
-    func createPageController()
-}
-
-protocol DetailViewPresenterProtocol: class{
-    init(view: DetailViewProtocol, networkService: NetworkServiceProtocol, stock: StockInfo?)
-    var historicalData: [DayInfo]? {get set}
-    var stock: StockInfo? {get set}
-    func viewDidLoad(_ view: DetailViewProtocol)
-    func getTicker() -> String
-    
-}
-
 class DetailPresenter: DetailViewPresenterProtocol {
     func viewDidLoad(_ view: DetailViewProtocol) {
         loadHistoricalData()

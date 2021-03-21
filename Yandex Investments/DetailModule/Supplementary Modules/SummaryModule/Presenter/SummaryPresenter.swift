@@ -7,20 +7,6 @@
 
 import Foundation
 
-protocol SummaryViewProtocol: class{
-    func success()
-    func failure(error: Error)
-}
-
-protocol SummaryViewPresenterProtocol{
-    init(view: SummaryViewProtocol, networkService: NetworkServiceProtocol, stock: StockInfo?)
-    var stock: StockInfo? {get set}
-    var quote: Quote? { get set }
-    func loadQuote()
-    func getQuote() -> Quote
-}
-
-
 class SummaryPresenter: SummaryViewPresenterProtocol{
     
     weak var view: SummaryViewProtocol?

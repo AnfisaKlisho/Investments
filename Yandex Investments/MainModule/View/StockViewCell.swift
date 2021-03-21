@@ -63,7 +63,7 @@ class StockViewCell: UITableViewCell {
         tickerLabel.text = stockInfo.symbol
         companyNameLabel.text = stockInfo.companyName
         currentPriceLabel.text = "$\(stockInfo.latestPrice)"
-        changePriceLabel.text = "\(stockInfo.change) (\(round(stockInfo.changePercent * 100) / 100)%)"
+        changePriceLabel.text = "$\(stockInfo.change) (\(round(stockInfo.changePercent * 100) / 100)%)"
         companyIcon.layer.cornerRadius = 16
         
         if stockInfo.change > 0{

@@ -9,7 +9,6 @@ import Foundation
 import Charts
 
 protocol ChartViewProtocol: class {
-    func success()
 }
 
 protocol ChartViewPresenterProtocol: class{
@@ -18,6 +17,9 @@ protocol ChartViewPresenterProtocol: class{
     var stock: StockInfo? {get set}
     //func viewDidLoad(_ view: ChartViewProtocol)
     func getArrayWithCoordinates() -> [ChartDataEntry]
+    func getPrice() -> String
+    func getChangePrice() -> String
+    func isChangePositive() -> Bool
 }
 
 class ChartPresenter: ChartViewPresenterProtocol {
@@ -64,6 +66,32 @@ class ChartPresenter: ChartViewPresenterProtocol {
             i += 1
         }
         return yValues
+    }
+    
+    func getPrice() -> String{
+        guard let price = stock?.latestPrice else {
+            return ""
+        }
+        return "$\(price)"
+    }
+    
+    func getChangePrice() -> String{
+        guard let change = stock?.changePercent else {
+            return ""
+        }
+        return "$\(stock!.change) ($\(round(change * 100) / 100)%)"
+    }
+    
+    func isChangePositive() -> Bool{
+        guard let change = stock?.changePercent else {
+            return false
+        }
+        if change > 0 {
+            return true
+        }
+        else{
+            return false
+        }
     }
     
     

@@ -15,8 +15,8 @@ protocol DetailViewPresenterProtocol: class{
     init(view: DetailViewProtocol, networkService: NetworkServiceProtocol, stock: StockInfo?)
     var historicalData: [DayInfo]? {get set}
     var stock: StockInfo? {get set}
-    //var networkService: NetworkServiceProtocol!
     func viewDidLoad(_ view: DetailViewProtocol)
+    func getTicker() -> String
     
 }
 
@@ -52,6 +52,14 @@ class DetailPresenter: DetailViewPresenterProtocol {
         }
         }
         
+    }
+    
+    func getTicker() -> String{
+        
+        guard let symbol = stock?.symbol else {
+            return ""
+        }
+        return symbol
     }
     
     

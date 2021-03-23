@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UISearchBarDelegate {
+class MainViewController: UIViewController {
 
     var presenter: MainViewPresenterProtocol!
     
@@ -184,5 +184,17 @@ extension MainViewController: StockViewCellDelegate{
     }
 
 
+}
+
+extension MainViewController: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else{
+            return}
+        //currentQuery = query
+        //self.fetchMore = false
+        presenter.loadSearchResults(for: query)
+        
+    
+    }
 }
 

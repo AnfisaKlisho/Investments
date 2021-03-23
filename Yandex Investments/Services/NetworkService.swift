@@ -25,6 +25,16 @@ class NetworkService: NetworkServiceProtocol{
         return _urlComps
     }
     
+    private let searchToken = "WW6S86URB25GEE0S"
+    
+    private var searchURL: URLComponents{
+        var _urlComps = URLComponents(string: "https://www.alphavantage.co")!
+        _urlComps.path = "/query"
+        _urlComps.queryItems = [URLQueryItem(name: "function", value: "SYMBOL_SEARCH"),
+                                 URLQueryItem(name: "apikey", value: searchToken)]
+        return _urlComps
+    }
+    
     //MARK:-Get list of companies
     func getListOfCompanies(_ amount: Int, completion: @escaping (Result<[StockInfo], SessionError>) -> Void) {
         var listUrlComponents = testURL
@@ -94,6 +104,35 @@ class NetworkService: NetworkServiceProtocol{
         urlComponents.path = "/stable/stock/\(symbol)/quote"
         
         get(type: Quote.self, from: urlComponents) { (result) in
+            completion(result)
+        }
+    }
+    
+    //MARK:-Get company Info
+    func getCompanyInfo(for symbol: String, completion: @escaping (Result<CompanyInfo, SessionError>) -> Void){
+        var urlComponents = testURL
+        urlComponents.path = "/stable/stock/\(symbol)/company"
+        
+        get(type: CompanyInfo.self, from: urlComponents) { (result) in
+            completion(result)
+        }
+        
+    }
+    
+    func getResultFromKeywords(for query: String, completion: @escaping (Result<ServerResponse, SessionError>) -> Void){
+        var urlComponents = searchURL
+        urlComponents.queryItems?.append(URLQueryItem(name: "keywords", value: query))
+        
+        get(type: ServerResponse.self, from: urlComponents) { (result) in
+            completion(result)
+        }
+    }
+    
+    func requestInfoForSymbol(for symbol: String, completion: @escaping (Result<StockInfo, SessionError>) -> Void) {
+        var urlComponents = testURL
+        urlComponents.path = "/stable/stock/\(symbol)/quote"
+        
+        get(type: StockInfo.self, from: urlComponents) { (result) in
             completion(result)
         }
     }

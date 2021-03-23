@@ -21,4 +21,5 @@ protocol MainViewPresenterProtocol: class{
     func getLogoUrl(at index: Int)
     func cellDidPressFavouriteButton(_ index: Int)
     func getStockInfoForCell(at index: Int) -> StockInfo
+    func loadSearchResults(for query: String)
 }

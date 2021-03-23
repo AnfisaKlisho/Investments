@@ -24,14 +24,20 @@ class DetailViewController: UIViewController {
     func createPageController(){
     
         //MARK:-Change
-        let firstVC = ModuleBuilder.createChartModule(stock: presenter.stock!, historicalData: presenter.historicalData!)
-        let secondVC = ModuleBuilder.createSummaryModule(stock: presenter.stock!)
+        let stock = presenter.getStock()
+        let historicalData = presenter.getHistoricalData()
+        
+        let firstVC = ModuleBuilder.createChartModule(stock: stock, historicalData: historicalData)
+        let secondVC = ModuleBuilder.createSummaryModule(stock: stock)
+        let thirdVC = ModuleBuilder.createProfileModule(stock: stock)
         firstVC.title = "Chart"
         secondVC.title = "Summary"
+        thirdVC.title = "Profile"
 
         let pagingViewController = PagingViewController(viewControllers: [
             firstVC,
-            secondVC
+            secondVC,
+            thirdVC
           ])
 
         

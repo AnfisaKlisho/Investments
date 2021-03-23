@@ -16,6 +16,7 @@ class MainPresenter: MainViewPresenterProtocol{
     var favourites: [StockInfo] = []
     var stocks: [StockInfo]?
     var historicalData: [DayInfo]?
+    var searchStocks: [StockInfo] = []
     
     required init(view: MainViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
@@ -126,6 +127,39 @@ class MainPresenter: MainViewPresenterProtocol{
 //            return
 //        }
         return stocksInfo![index]
+    }
+    
+    func loadSearchResults(for query: String){
+        searchStocks = []
+        networkService.getResultFromKeywords(for: query) { (result) in
+            switch result{
+            case .success(let response):
+                let companies = response.bestMatches
+                for company in companies{
+                    self.loadInfoForSymbol(for: company.symbol)
+                }
+                //self.stocksInfo = self.searchStocks
+                //self.view?.success()
+            case .failure(let error):
+                self.view?.failure(error: error)
+            }
+        }
+                                             
+        
+    }
+    
+    func loadInfoForSymbol(for symbol: String){
+        networkService.requestInfoForSymbol(for: symbol) { (result) in
+            switch result{
+            case .success(let info):
+                self.searchStocks.append(info)
+            case .failure(let error):
+                //self.view?.failure(error: error)
+                print(error)
+            }
+            
+            
+        }
     }
 }
     

@@ -39,7 +39,7 @@ class SummaryTableViewController: UITableViewController {
         volumeLabel.text = checkIfNull(number: quote.volume)
     }
     
-    func checkIfNull(number: Double?) -> String{
+    private func checkIfNull(number: Double?) -> String{
         if number != nil{
             return "\(number!)"
         }

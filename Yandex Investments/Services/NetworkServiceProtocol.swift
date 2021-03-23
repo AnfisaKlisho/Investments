@@ -15,5 +15,7 @@ protocol NetworkServiceProtocol{
     func getLogoImage(for url: String, completion: @escaping (Result<UIImage, SessionError>) -> Void)
     func getHistoricalData(for symbol: String, completion: @escaping (Result<[DayInfo], SessionError>) -> Void)
     func requestQuote(for symbol: String, completion: @escaping (Result<Quote, SessionError>) -> Void)
-    
+    func getCompanyInfo(for symbol: String, completion: @escaping (Result<CompanyInfo, SessionError>) -> Void)
+    func getResultFromKeywords(for query: String, completion: @escaping (Result<ServerResponse, SessionError>) -> Void)
+    func requestInfoForSymbol(for symbol: String, completion: @escaping (Result<StockInfo, SessionError>) -> Void)
 }

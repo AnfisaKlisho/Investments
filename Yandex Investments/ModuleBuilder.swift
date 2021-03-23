@@ -47,6 +47,14 @@ class ModuleBuilder: Builder {
         
     }
     
+    static func createProfileModule(stock: StockInfo) -> UIViewController{
+        let view = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(identifier: "ProfileTableViewController") as! ProfileTableViewController
+        let networkService = NetworkService()
+        let presenter = ProfilePresenter(view: view, networkService: networkService, stock: stock)
+        view.presenter = presenter
+        return view
+    }
+    
     
     
 }

@@ -196,5 +196,9 @@ extension MainViewController: UISearchBarDelegate{
         
     
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter.searchBarCancelButtonClicked()
+    }
 }
 

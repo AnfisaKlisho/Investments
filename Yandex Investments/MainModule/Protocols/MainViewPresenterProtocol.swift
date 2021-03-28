@@ -22,4 +22,5 @@ protocol MainViewPresenterProtocol: class{
     func cellDidPressFavouriteButton(_ index: Int)
     func getStockInfoForCell(at index: Int) -> StockInfo
     func loadSearchResults(for query: String)
+    func searchBarCancelButtonClicked()
 }

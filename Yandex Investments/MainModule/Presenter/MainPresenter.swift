@@ -112,6 +112,7 @@ class MainPresenter: MainViewPresenterProtocol{
             guard let stockIndex = stocks?.firstIndex(of: stock) else {
                 return
             }
+            stock.isFavourite = false
             stocks![stockIndex].isFavourite = false
             stocksInfo![index].isFavourite = false
             view?.updateRow(at: index)
@@ -129,37 +130,23 @@ class MainPresenter: MainViewPresenterProtocol{
         return stocksInfo![index]
     }
     
+    //MARK:-Load Search Results
     func loadSearchResults(for query: String){
         searchStocks = []
         networkService.getResultFromKeywords(for: query) { (result) in
-            switch result{
-            case .success(let response):
-                let companies = response.bestMatches
-                for company in companies{
-                    self.loadInfoForSymbol(for: company.symbol)
-                }
-                //self.stocksInfo = self.searchStocks
-                //self.view?.success()
-            case .failure(let error):
-                self.view?.failure(error: error)
+            self.searchStocks = result
+            self.stocksInfo = self.searchStocks
+            self.view?.success()
             }
-        }
-                                             
         
-    }
-    
-    func loadInfoForSymbol(for symbol: String){
-        networkService.requestInfoForSymbol(for: symbol) { (result) in
-            switch result{
-            case .success(let info):
-                self.searchStocks.append(info)
-            case .failure(let error):
-                //self.view?.failure(error: error)
-                print(error)
-            }
-            
-            
         }
-    }
-}
     
+    func searchBarCancelButtonClicked(){
+        stocksInfo = stocks
+        view?.success()
+    }
+    }
+    
+
+    
+

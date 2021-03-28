@@ -119,15 +119,45 @@ class NetworkService: NetworkServiceProtocol{
         
     }
     
-    func getResultFromKeywords(for query: String, completion: @escaping (Result<ServerResponse, SessionError>) -> Void){
+    //MARK:-Get Request From Keywords
+    func getResultFromKeywords(for query: String, completion: @escaping ([StockInfo]) -> Void){
         var urlComponents = searchURL
         urlComponents.queryItems?.append(URLQueryItem(name: "keywords", value: query))
         
         get(type: ServerResponse.self, from: urlComponents) { (result) in
-            completion(result)
+            //completion(result)
+            switch result{
+            case .success(let response):
+                let results = response.bestMatches
+                let group = DispatchGroup()
+                var stocksInfo = [StockInfo]()
+                for result in results{
+                    group.enter()
+                    self.requestInfoForSymbol(for: result.symbol) { (result) in
+                        switch result{
+                        case .success(let stockInfo):
+                            stocksInfo.append(stockInfo)
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                        group.leave()
+                        
+                       
+                        }
+                    }
+                group.notify(queue: .main){
+                    completion(stocksInfo)
+                }
+            case .failure(let error):
+                //completion(error)
+                print(error)
+                }
+            
+            }
         }
-    }
     
+    //MARK:-Request info for symbol
     func requestInfoForSymbol(for symbol: String, completion: @escaping (Result<StockInfo, SessionError>) -> Void) {
         var urlComponents = testURL
         urlComponents.path = "/stable/stock/\(symbol)/quote"

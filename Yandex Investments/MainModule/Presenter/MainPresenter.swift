@@ -13,10 +13,12 @@ class MainPresenter: MainViewPresenterProtocol{
     
     let networkService: NetworkServiceProtocol!
     var stocksInfo: [StockInfo]?
-    var favourites: [StockInfo] = []
+    var favourites: [StockInfo]?
     var stocks: [StockInfo]?
     var historicalData: [DayInfo]?
     var searchStocks: [StockInfo] = []
+    
+    let defaults = UserDefaults.standard
     
     required init(view: MainViewProtocol, networkService: NetworkServiceProtocol) {
         self.view = view
@@ -24,7 +26,33 @@ class MainPresenter: MainViewPresenterProtocol{
     }
     
     func viewDidLoad(_ view: MainViewProtocol) {
+       
+        configureFavourites()
         getStocksInfo()
+    }
+    
+    func configureFavourites(){
+        favourites = [StockInfo]()
+        if let savedList = defaults.object(forKey: "favList") as? Data{
+            let decoder = JSONDecoder()
+            if let favList = try? decoder.decode([StockInfo].self, from: savedList){
+                //favourites = favList
+                for var stock in favList{
+                    stock.isFavourite = true
+                    favourites?.append(stock)
+                }
+            }
+            
+            
+        }
+    }
+    
+    func saveFavList(){
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(favourites) {
+            //let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "favList")
+        }
     }
     
     //MARK:- Get Stocks info
@@ -35,7 +63,7 @@ class MainPresenter: MainViewPresenterProtocol{
             }
             switch result{
             case .success(let stocksInfo):
-                self.stocks = stocksInfo
+                self.stocks = self.detectFavourites(stocks: stocksInfo)
                 self.stocksInfo = self.stocks
                 self.view?.success()
             case .failure(let error):
@@ -101,20 +129,27 @@ class MainPresenter: MainViewPresenterProtocol{
         }
         if !stock.isFavourite{
             stock.isFavourite = true
-            favourites.append(stock)
-            stocks![index].isFavourite = true
-            stocksInfo![index].isFavourite = true
+            favourites?.append(stock)
+            //let stockIndex = stocks?.firstIndex(of: stock)
+            if let stockIndex = stocks?.firstIndex(where: {$0.symbol == stock.symbol}){
+                stocks?[stockIndex].isFavourite = true
+            }
+            
+            //stocks?[index].isFavourite = true
+            stocksInfo?[index].isFavourite = true
+            saveFavList()
             view?.updateRow(at: index)
     }
         else{
-            guard let favIndex = favourites.firstIndex(of: stock) else {return}
-            favourites.remove(at: favIndex)
+            guard let favIndex = favourites?.firstIndex(of: stock) else {return}
+            favourites?.remove(at: favIndex)
             guard let stockIndex = stocks?.firstIndex(of: stock) else {
                 return
             }
             stock.isFavourite = false
-            stocks![stockIndex].isFavourite = false
-            stocksInfo![index].isFavourite = false
+            stocks?[stockIndex].isFavourite = false
+            stocksInfo?[index].isFavourite = false
+            saveFavList()
             view?.updateRow(at: index)
         }
     
@@ -145,7 +180,40 @@ class MainPresenter: MainViewPresenterProtocol{
         stocksInfo = stocks
         view?.success()
     }
+    
+//    func isStockInFavourites(for stock: StockInfo) -> Bool{
+//        if let favIndex = favourites?.firstIndex(where: {$0.symbol == stock.symbol}) {
+//            if let index = stocks?.firstIndex(of: stock){
+//                stocks?[index].isFavourite = true
+//                stocksInfo
+//            }
+//
+//            return true
+//        }
+//
+//            else {
+//            return false
+//        }
+//
+//
+//
+//    }
+    
+    func detectFavourites(stocks: [StockInfo]) -> [StockInfo]{
+        var correctStocks = [StockInfo] ()
+        for stock in stocks{
+            if var st = favourites?.first(where: {$0.symbol == stock.symbol}){
+                st.isFavourite = true
+                correctStocks.append(st)
+            }
+            else{
+                correctStocks.append(stock)
+            }
+        }
+        return correctStocks
     }
+    
+}
     
 
     

@@ -34,3 +34,7 @@ extension StockInfo: Decodable{
         changePercent = try values.decode(Float.self, forKey: .changePercent)
     }
 }
+
+extension StockInfo: Encodable{
+    
+}

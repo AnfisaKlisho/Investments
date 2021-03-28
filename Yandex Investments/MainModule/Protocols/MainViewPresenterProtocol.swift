@@ -12,8 +12,8 @@ protocol MainViewPresenterProtocol: class{
     
     var stocksInfo: [StockInfo]? { get set}
     var stocks: [StockInfo]? {get set}
-    var favourites: [StockInfo] {get set}
-    func getStocksInfo()
+    var favourites: [StockInfo]? {get set}
+    //func getStocksInfo()
     func viewDidLoad(_ view: MainViewProtocol)
     func showFavourites()
     func showStocks()
@@ -23,4 +23,5 @@ protocol MainViewPresenterProtocol: class{
     func getStockInfoForCell(at index: Int) -> StockInfo
     func loadSearchResults(for query: String)
     func searchBarCancelButtonClicked()
+    //func isStockInFavourites(at index: Int) -> Bool
 }

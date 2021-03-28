@@ -117,6 +117,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
         presenter.getLogoUrl(at: indexPath.row)
         cell.delegate = self
         cell.starButton.imageView?.tintColor = stockInfo.isFavourite ? UIColor.systemYellow : .lightGray
+//        if presenter.isStockInFavourites(at: indexPath.row){
+//            cell.starButton.imageView?.tintColor = UIColor.systemYellow
+//        }
         return cell
     }
     

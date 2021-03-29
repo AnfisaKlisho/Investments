@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController storyboardIdentifier="ChartViewController" id="8dI-0d-DL9" customClass="ChartViewController" customModule="Yandex_Investments" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EW1-T2-grw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLw-Ev-xxV">
-                                <rect key="frame" x="0.0" y="195" width="414" height="414"/>
+                                <rect key="frame" x="0.0" y="145" width="428" height="428"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <constraints>
@@ -26,40 +26,52 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfd-lZ-Adq">
-                                <rect key="frame" x="167" y="104" width="80" height="35"/>
+                                <rect key="frame" x="174" y="64" width="80" height="35"/>
                                 <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChangePrice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPn-lH-beZ">
-                                <rect key="frame" x="147.5" y="144" width="119.5" height="21"/>
+                                <rect key="frame" x="154.66666666666666" y="104" width="118.99999999999997" height="21"/>
                                 <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f10-N4-1Ka">
+                                <rect key="frame" x="20" y="603" width="388" height="42"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="24"/>
+                                <state key="normal" title="Buy for $1000">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="k56-6I-jU0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="DLw-Ev-xxV" firstAttribute="top" secondItem="nPn-lH-beZ" secondAttribute="bottom" constant="30" id="Prq-DB-lNg"/>
+                            <constraint firstItem="k56-6I-jU0" firstAttribute="trailing" secondItem="f10-N4-1Ka" secondAttribute="trailing" constant="20" id="4nz-Kb-Hn5"/>
+                            <constraint firstItem="f10-N4-1Ka" firstAttribute="leading" secondItem="k56-6I-jU0" secondAttribute="leading" constant="20" id="IHl-Y8-aD9"/>
+                            <constraint firstItem="DLw-Ev-xxV" firstAttribute="top" secondItem="nPn-lH-beZ" secondAttribute="bottom" constant="20" id="Prq-DB-lNg"/>
                             <constraint firstItem="DLw-Ev-xxV" firstAttribute="centerX" secondItem="k56-6I-jU0" secondAttribute="centerX" id="QuO-3K-AOt"/>
                             <constraint firstItem="Kfd-lZ-Adq" firstAttribute="centerX" secondItem="k56-6I-jU0" secondAttribute="centerX" id="WTj-81-95u"/>
+                            <constraint firstItem="f10-N4-1Ka" firstAttribute="top" secondItem="DLw-Ev-xxV" secondAttribute="bottom" constant="30" id="X5B-L3-n0a"/>
                             <constraint firstItem="k56-6I-jU0" firstAttribute="trailing" secondItem="DLw-Ev-xxV" secondAttribute="trailing" id="XeS-nn-b7O"/>
-                            <constraint firstItem="Kfd-lZ-Adq" firstAttribute="top" secondItem="k56-6I-jU0" secondAttribute="top" constant="60" id="aCr-u4-tav"/>
+                            <constraint firstItem="Kfd-lZ-Adq" firstAttribute="top" secondItem="k56-6I-jU0" secondAttribute="top" constant="20" id="aCr-u4-tav"/>
                             <constraint firstItem="nPn-lH-beZ" firstAttribute="top" secondItem="Kfd-lZ-Adq" secondAttribute="bottom" constant="5" id="bj7-hs-EE6"/>
                             <constraint firstItem="nPn-lH-beZ" firstAttribute="centerX" secondItem="k56-6I-jU0" secondAttribute="centerX" id="fcd-2C-G1k"/>
                             <constraint firstItem="DLw-Ev-xxV" firstAttribute="leading" secondItem="k56-6I-jU0" secondAttribute="leading" id="tft-5C-oma"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buyButton" destination="f10-N4-1Ka" id="8eV-KD-Z4X"/>
                         <outlet property="changePriceLabel" destination="nPn-lH-beZ" id="Xxm-tK-d4v"/>
-                        <outlet property="marginsView" destination="DLw-Ev-xxV" id="Qjj-ZO-jcU"/>
+                        <outlet property="marginsView" destination="DLw-Ev-xxV" id="G4o-98-zJo"/>
                         <outlet property="priceLabel" destination="Kfd-lZ-Adq" id="YVg-Ih-9r5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hzl-s4-M9Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135" y="87"/>
+            <point key="canvasLocation" x="134.78260869565219" y="86.383928571428569"/>
         </scene>
     </scenes>
     <resources>

@@ -31,6 +31,7 @@ class MainPresenter: MainViewPresenterProtocol{
         getStocksInfo()
     }
     
+    //MARK:-Configure Favourites
     func configureFavourites(){
         favourites = [StockInfo]()
         if let savedList = defaults.object(forKey: "favList") as? Data{
@@ -47,6 +48,7 @@ class MainPresenter: MainViewPresenterProtocol{
         }
     }
     
+    //MARK:-Save Favourite List
     func saveFavList(){
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(favourites) {

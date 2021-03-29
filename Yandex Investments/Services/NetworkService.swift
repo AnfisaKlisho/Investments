@@ -30,8 +30,7 @@ class NetworkService: NetworkServiceProtocol{
     private var searchURL: URLComponents{
         var _urlComps = URLComponents(string: "https://www.alphavantage.co")!
         _urlComps.path = "/query"
-        _urlComps.queryItems = [URLQueryItem(name: "function", value: "SYMBOL_SEARCH"),
-                                 URLQueryItem(name: "apikey", value: searchToken)]
+        _urlComps.queryItems?.append(URLQueryItem(name: "apikey", value: searchToken))
         return _urlComps
     }
     
@@ -102,6 +101,7 @@ class NetworkService: NetworkServiceProtocol{
     func requestQuote(for symbol: String, completion: @escaping (Result<Quote, SessionError>) -> Void) {
         var urlComponents = testURL
         urlComponents.path = "/stable/stock/\(symbol)/quote"
+      
         
         get(type: Quote.self, from: urlComponents) { (result) in
             completion(result)
@@ -112,6 +112,9 @@ class NetworkService: NetworkServiceProtocol{
     func getCompanyInfo(for symbol: String, completion: @escaping (Result<CompanyInfo, SessionError>) -> Void){
         var urlComponents = testURL
         urlComponents.path = "/stable/stock/\(symbol)/company"
+//        var urlComponents = searchURL
+//        urlComponents.queryItems?.append(URLQueryItem(name: "function", value: "OVERVIEW"))
+//        urlComponents.queryItems?.append(URLQueryItem(name: "symbol", value: symbol))
         
         get(type: CompanyInfo.self, from: urlComponents) { (result) in
             completion(result)
@@ -123,6 +126,7 @@ class NetworkService: NetworkServiceProtocol{
     func getResultFromKeywords(for query: String, completion: @escaping ([StockInfo]) -> Void){
         var urlComponents = searchURL
         urlComponents.queryItems?.append(URLQueryItem(name: "keywords", value: query))
+        urlComponents.queryItems?.append(URLQueryItem(name: "function", value: "SYMBOL_SEARCH"))
         
         get(type: ServerResponse.self, from: urlComponents) { (result) in
             //completion(result)

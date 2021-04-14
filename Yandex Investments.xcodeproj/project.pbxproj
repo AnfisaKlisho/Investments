@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B03C4EC26271C460090C1E6 /* UIColor_Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B03C4EB26271C460090C1E6 /* UIColor_Hex.swift */; };
 		1B0C077525F8398F00ABFA8D /* StockViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0C077325F8398F00ABFA8D /* StockViewCell.swift */; };
-		1B0C077925F848BF00ABFA8D /* UIColor_hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0C077825F848BF00ABFA8D /* UIColor_hex.swift */; };
 		1B0C077D25F912B300ABFA8D /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0C077C25F912B200ABFA8D /* MainPresenter.swift */; };
 		1B16A2ED2602551B00063BE0 /* MainModule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B16A2EC2602551B00063BE0 /* MainModule.storyboard */; };
 		1B16A2F62602B21D00063BE0 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 1B16A2F52602B21D00063BE0 /* Charts */; };
@@ -59,8 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B03C4EB26271C460090C1E6 /* UIColor_Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor_Hex.swift; sourceTree = "<group>"; };
 		1B0C077325F8398F00ABFA8D /* StockViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewCell.swift; sourceTree = "<group>"; };
-		1B0C077825F848BF00ABFA8D /* UIColor_hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColor_hex.swift; path = ../../../../Downloads/UIColor_hex.swift; sourceTree = "<group>"; };
 		1B0C077C25F912B200ABFA8D /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		1B16A2EC2602551B00063BE0 /* MainModule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainModule.storyboard; sourceTree = "<group>"; };
 		1B16A32A2602CB0100063BE0 /* DayInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayInfo.swift; sourceTree = "<group>"; };
@@ -283,7 +283,7 @@
 				1BEC9CD725EEF59F002998B6 /* Storyboards */,
 				1BEC9CC525EEF4E5002998B6 /* Assets.xcassets */,
 				1BEC9CCA25EEF4E5002998B6 /* Info.plist */,
-				1B0C077825F848BF00ABFA8D /* UIColor_hex.swift */,
+				1B03C4EB26271C460090C1E6 /* UIColor_Hex.swift */,
 			);
 			path = "Yandex Investments";
 			sourceTree = "<group>";
@@ -487,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BF1E29A2607829F00B17C57 /* ChartPresenter.swift in Sources */,
+				1B03C4EC26271C460090C1E6 /* UIColor_Hex.swift in Sources */,
 				1B4C3CF726080BCB00A4E271 /* ProfileTableViewController.swift in Sources */,
 				1BEC9CE325F036B9002998B6 /* StockInfo.swift in Sources */,
 				1B1B947926076DB000C0B142 /* MainViewPresenterProtocol.swift in Sources */,
@@ -500,7 +501,6 @@
 				1BDCE25A26079F8600A00318 /* ChartViewController.swift in Sources */,
 				1B4C3CED260806B900A4E271 /* CompanyInfo.swift in Sources */,
 				1BDCE26E2607AE0A00A00318 /* NetworkServiceProtocol.swift in Sources */,
-				1B0C077925F848BF00ABFA8D /* UIColor_hex.swift in Sources */,
 				1BEC9CD425EEF585002998B6 /* NetworkService.swift in Sources */,
 				1B4C3CFA26080BD900A4E271 /* ProfilePresenter.swift in Sources */,
 				1BA34C43261216C3002759FB /* BuilderProtocol.swift in Sources */,

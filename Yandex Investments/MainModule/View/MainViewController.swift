@@ -17,17 +17,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-//    private let tableRefreshControl: UIRefreshControl = {
-//        let refreshControl = UIRefreshControl()
-//        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-//        return refreshControl
-//    }()
-    
-//    @objc func refresh(sender: UIRefreshControl){
-//        tableView.reloadData()
-//        sender.endRefreshing()
-//    }
-//
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -38,7 +28,6 @@ class MainViewController: UIViewController {
     func configure(){
         tableView.delegate = self
         tableView.dataSource = self
-        //tableView.refreshControl = tableRefreshControl
 
         setupSearchController()
         setupButtons()
@@ -66,12 +55,14 @@ class MainViewController: UIViewController {
         
     }
     
+    //MARK:-Stocks button clicked
     @IBAction func stocksButtonClicked(_ sender: Any) {
         setHightlightedState(for: stocksButton)
         setNormalState(for: favouriteButton)
         presenter.showStocks()
     }
   
+    //MARK:-Favourite button clicked
     @IBAction func favouriteButtonClicked(_ sender: Any) {
         setHightlightedState(for: favouriteButton)
         setNormalState(for: stocksButton)
@@ -112,14 +103,14 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
         }
         
        
-        let stockInfo = presenter.getStockInfoForCell(at: indexPath.row)
+        guard let stockInfo = presenter.getStockInfoForCell(at: indexPath.row) else{
+            return cell
+        }
         cell.configure(with: stockInfo, at: indexPath.row)
         presenter.getLogoUrl(at: indexPath.row)
         cell.delegate = self
-        cell.starButton.imageView?.tintColor = stockInfo.isFavourite ? UIColor.systemYellow : .lightGray
-//        if presenter.isStockInFavourites(at: indexPath.row){
-//            cell.starButton.imageView?.tintColor = UIColor.systemYellow
-//        }
+        let imageName = stockInfo.isFavourite ? "yellowStar" : "greyStar"
+        cell.starButton.setImage(UIImage(named: imageName), for: .normal)
         return cell
     }
     
@@ -127,6 +118,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate{
         return 76
         
     }
+    
     
     
 }
@@ -185,16 +177,26 @@ extension MainViewController: StockViewCellDelegate{
         presenter.cellDidPressFavouriteButton(indexPath.row)
 
     }
+    
+    func cellDidLayoutSubviews(_ cell: StockViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        guard let stockInfo = presenter.getStockInfoForCell(at: indexPath.row) else{
+            return
+        }
+        cell.starButton.imageView?.tintColor = stockInfo.isFavourite ? UIColor.systemYellow : .lightGray
+    }
+    
 
 
 }
 
+//MARK:-UISearchBatDelegate
 extension MainViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else{
             return}
-        //currentQuery = query
-        //self.fetchMore = false
         presenter.loadSearchResults(for: query)
         
     

@@ -110,7 +110,7 @@ class NetworkService: NetworkServiceProtocol{
     
     //MARK:-Get company Info
     func getCompanyInfo(for symbol: String, completion: @escaping (Result<CompanyInfo, SessionError>) -> Void){
-        var urlComponents = testURL
+        var urlComponents = baseURL
         urlComponents.path = "/stable/stock/\(symbol)/company"
 //        var urlComponents = searchURL
 //        urlComponents.queryItems?.append(URLQueryItem(name: "function", value: "OVERVIEW"))

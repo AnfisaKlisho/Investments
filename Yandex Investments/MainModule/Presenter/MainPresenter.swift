@@ -52,7 +52,6 @@ class MainPresenter: MainViewPresenterProtocol{
     func saveFavList(){
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(favourites) {
-            //let defaults = UserDefaults.standard
             defaults.set(encoded, forKey: "favList")
         }
     }
@@ -159,12 +158,8 @@ class MainPresenter: MainViewPresenterProtocol{
 }
     
     //MARK:-Get stock info for cell
-    func getStockInfoForCell(at index: Int) -> StockInfo{
-        //MARK:-Change force unwrap
-//        guard let stock = stocksInfo?[index] else {
-//            return
-//        }
-        return stocksInfo![index]
+    func getStockInfoForCell(at index: Int) -> StockInfo?{
+        return stocksInfo?[index]
     }
     
     //MARK:-Load Search Results
@@ -183,23 +178,6 @@ class MainPresenter: MainViewPresenterProtocol{
         view?.success()
     }
     
-//    func isStockInFavourites(for stock: StockInfo) -> Bool{
-//        if let favIndex = favourites?.firstIndex(where: {$0.symbol == stock.symbol}) {
-//            if let index = stocks?.firstIndex(of: stock){
-//                stocks?[index].isFavourite = true
-//                stocksInfo
-//            }
-//
-//            return true
-//        }
-//
-//            else {
-//            return false
-//        }
-//
-//
-//
-//    }
     
     func detectFavourites(stocks: [StockInfo]) -> [StockInfo]{
         var correctStocks = [StockInfo] ()

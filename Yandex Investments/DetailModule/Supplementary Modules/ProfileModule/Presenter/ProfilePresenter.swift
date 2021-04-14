@@ -7,18 +7,6 @@
 
 import Foundation
 
-protocol ProfileViewProtocol: class{
-    func success()
-    func failure(error: Error)
-}
-
-protocol ProfileViewPresenterProtocol{
-    init(view: ProfileViewProtocol, networkService: NetworkServiceProtocol, stock: StockInfo?)
-    var stock: StockInfo? {get set}
-    func loadCompanyInfo()
-    func getInfo() -> CompanyInfo
-}
-
 class ProfilePresenter: ProfileViewPresenterProtocol{
     
     weak var view: ProfileViewProtocol?
@@ -54,13 +42,8 @@ class ProfilePresenter: ProfileViewPresenterProtocol{
         
     }
     
-    func getInfo() -> CompanyInfo {
-        
-        //MARK:-Change
-//        guard let info = companyInfo else {
-//            return
-//        }
-        return companyInfo!
+    func getInfo() -> CompanyInfo? {
+        return companyInfo
     }
     
     

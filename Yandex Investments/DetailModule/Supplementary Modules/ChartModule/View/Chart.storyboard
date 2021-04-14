@@ -41,7 +41,7 @@
                                 <rect key="frame" x="20" y="603" width="388" height="42"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="24"/>
-                                <state key="normal" title="Buy for $1000">
+                                <state key="normal" title="Buy for $100">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>

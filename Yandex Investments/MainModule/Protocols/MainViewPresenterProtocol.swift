@@ -20,8 +20,7 @@ protocol MainViewPresenterProtocol: class{
     func didTapOnStock(at index: Int)
     func getLogoUrl(at index: Int)
     func cellDidPressFavouriteButton(_ index: Int)
-    func getStockInfoForCell(at index: Int) -> StockInfo
+    func getStockInfoForCell(at index: Int) -> StockInfo?
     func loadSearchResults(for query: String)
     func searchBarCancelButtonClicked()
-    //func isStockInFavourites(at index: Int) -> Bool
 }

@@ -12,6 +12,6 @@ protocol SummaryViewPresenterProtocol{
     var stock: StockInfo? {get set}
     var quote: Quote? { get set }
     func loadQuote()
-    func getQuote() -> Quote
+    func getQuote() -> Quote?
 }
 

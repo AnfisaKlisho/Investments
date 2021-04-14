@@ -37,7 +37,9 @@ class ProfileTableViewController: UITableViewController {
     }
     
     func setupCompanyInfoTable(){
-        let info = presenter.getInfo()
+        guard let info = presenter.getInfo() else{
+            return
+        }
         if info.description == "0"{
             descriptionTextView.text = "No data"
         }

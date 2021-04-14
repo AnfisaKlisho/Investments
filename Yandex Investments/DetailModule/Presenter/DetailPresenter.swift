@@ -49,18 +49,16 @@ class DetailPresenter: DetailViewPresenterProtocol {
         return symbol
     }
     
-    func getStock() -> StockInfo{
-        //MARK:-Change
-        return stock!
+    func getStock() -> StockInfo?{
+        return stock
     }
     
-    func getHistoricalData() -> [DayInfo]{
-        //MARK:-Change
-        return historicalData!
+    func getHistoricalData() -> [DayInfo]?{
+        return historicalData
     }
     
     
-    //public 
+
     
     
 }

@@ -13,6 +13,6 @@ protocol DetailViewPresenterProtocol: class{
     var stock: StockInfo? {get set}
     func viewDidLoad(_ view: DetailViewProtocol)
     func getTicker() -> String
-    func getStock() -> StockInfo
-    func getHistoricalData() -> [DayInfo]
+    func getStock() -> StockInfo?
+    func getHistoricalData() -> [DayInfo]?
 }

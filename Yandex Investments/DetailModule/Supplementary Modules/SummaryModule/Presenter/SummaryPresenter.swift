@@ -37,9 +37,8 @@ class SummaryPresenter: SummaryViewPresenterProtocol{
         }
     }
     
-    func getQuote() -> Quote{
-        //MARK:-Change
-        return quote!
+    func getQuote() -> Quote?{
+        return quote
     }
     
     

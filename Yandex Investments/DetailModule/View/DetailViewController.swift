@@ -24,8 +24,9 @@ class DetailViewController: UIViewController {
     func createPageController(){
     
         //MARK:-Change
-        let stock = presenter.getStock()
-        let historicalData = presenter.getHistoricalData()
+        guard let stock = presenter.getStock(), let historicalData = presenter.getHistoricalData() else {
+            return
+        }
         
         let firstVC = ModuleBuilder.createChartModule(stock: stock, historicalData: historicalData)
         let secondVC = ModuleBuilder.createSummaryModule(stock: stock)

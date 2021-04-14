@@ -9,6 +9,7 @@ import UIKit
 
 protocol StockViewCellDelegate: class {
     func cellDidPressFavouriteButton(_ cell: StockViewCell)
+    func cellDidLayoutSubviews(_ cell: StockViewCell)
 }
 
 class StockViewCell: UITableViewCell {
@@ -29,7 +30,7 @@ class StockViewCell: UITableViewCell {
     
     @IBOutlet weak var starButton: UIButton!
     
-    //private var isStarHighlighted: Bool?
+    
     
     weak var delegate: StockViewCellDelegate?
     
@@ -41,6 +42,7 @@ class StockViewCell: UITableViewCell {
     override func layoutSubviews() {
         layer.cornerRadius = 16
         super.layoutSubviews()
+        //delegate?.cellDidLayoutSubviews(self)
     }
     
     override func prepareForReuse() {
@@ -56,9 +58,9 @@ class StockViewCell: UITableViewCell {
     
     //MARK:- Configure Cell
     func configure(with stockInfo: StockInfo, at indexPath: Int){
-        //isStarHighlighted = false
-        starButton.setImage(UIImage(named: "greyStar"), for: .normal)
-        starButton.setImage(UIImage(named: "yellowStar"), for: .selected)
+      
+        //starButton.setImage(UIImage(named: "greyStar"), for: .normal)
+        //starButton.setImage(UIImage(named: "yellowStar"), for: .selected)
         view.layer.cornerRadius = 16
         tickerLabel.text = stockInfo.symbol
         companyNameLabel.text = stockInfo.companyName
@@ -79,7 +81,7 @@ class StockViewCell: UITableViewCell {
         else{
             view.backgroundColor = .fromHex("#FFFFFF")
         }
-        starButton.imageView?.image = UIImage(named: "greyStar")
+        //starButton.imageView?.image = UIImage(named: "greyStar")
         
     
     }

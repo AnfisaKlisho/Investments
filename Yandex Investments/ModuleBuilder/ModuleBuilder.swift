@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol Builder{
-    static func createMainModule() -> UIViewController
-    static func createDetailModule(stock: StockInfo) -> UIViewController
-}
-
 
 class ModuleBuilder: Builder {
     

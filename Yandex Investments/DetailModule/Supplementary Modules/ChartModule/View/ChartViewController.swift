@@ -37,7 +37,7 @@ class ChartViewController: UIViewController {
         chartView.xAxis.drawAxisLineEnabled = false
         chartView.xAxis.drawLabelsEnabled = false
         
-        //chartView.drawMarkers = true
+        chartView.drawMarkers = true
 
         chartView.animate(xAxisDuration: 2)
 
@@ -56,21 +56,11 @@ class ChartViewController: UIViewController {
         NSLayoutConstraint.activate([lineChartView.topAnchor.constraint(equalTo: changePriceLabel.bottomAnchor, constant: 10)])
         
 
-//        let marker = BalloonMarker
-//        marker.chartView = lineChartView
-//        //marker.minimumSize = CGSize(width: 80, height: 40)
-//        lineChartView.marker = marker
         setData()
         setupLabels()
         setupButton()
         let marker = PillMarker(color: .white, font: UIFont.boldSystemFont(ofSize: 14), textColor: .black)
         lineChartView.marker = marker
-//
-//    }
-//
-//    public override func refreshContent(entry: ChartDataEntry, highlight: Highlight) {
-////        label.text = String.init(format: "%d %%", Int(round(entry.y)))
-////        layoutIfNeeded()
         
 
         
@@ -81,7 +71,7 @@ class ChartViewController: UIViewController {
   
     func setupButton(){
         let priceString = presenter.getPrice()
-        buyButton.titleLabel?.text = "Buy for \(priceString)"
+        buyButton.setTitle("Buy for \(priceString)", for: .normal)
         buyButton.layer.cornerRadius = 16
     }
     
@@ -135,21 +125,6 @@ extension ChartViewController: ChartViewProtocol{
 }
 
 extension ChartViewController: ChartViewDelegate{
-//    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-//        let markerPosition = chartView.getMarkerPosition(highlight: highlight)
-//
-//      // Adding top marker
-//        markerView.valueLabel.text = "\(entry.x)"
-//        //markerView.dateLabel.text = "\(months[entry.xIndex])"
-//        markerView.center = CGPoint(x: markerPosition.x, y: markerView.center.y)
-//        markerView.isHidden = false
-    
-    
+
     
 }
-
-//class MarkerView: UIView{
-//    var valueLabel: UILabel!
-//    var metricLabel: UILabel!
-//    //var dateLabel: UILabel!
-//}

@@ -30,7 +30,9 @@ class SummaryTableViewController: UITableViewController {
     }
     
     func setUpTableView(){
-        let quote = presenter.getQuote()
+        guard let quote = presenter.getQuote() else{
+            return
+        }
         wkRangeLabel.text = "\(checkIfNull(number: quote.week52Low))-\(checkIfNull(number: quote.week52High))"
         previousCloseLabel.text = checkIfNull(number: quote.previousClose)
         openLabel.text = checkIfNull(number: quote.open)

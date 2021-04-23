@@ -30,7 +30,7 @@ class NetworkService: NetworkServiceProtocol{
     private var searchURL: URLComponents{
         var _urlComps = URLComponents(string: "https://www.alphavantage.co")!
         _urlComps.path = "/query"
-        _urlComps.queryItems?.append(URLQueryItem(name: "apikey", value: searchToken))
+        _urlComps.queryItems = [URLQueryItem(name: "apikey", value: searchToken)]
         return _urlComps
     }
     

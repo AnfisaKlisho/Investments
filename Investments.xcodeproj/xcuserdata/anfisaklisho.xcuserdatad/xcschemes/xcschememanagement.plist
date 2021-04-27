@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Investments.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>PlaygroundChart (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -25,10 +30,13 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>Yandex Investments.xcscheme_^#shared#^_</key>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1BEC9CB825EEF4E0002998B6</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

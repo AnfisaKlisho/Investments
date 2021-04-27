@@ -97,7 +97,7 @@
 		1BDCE26D2607AE0A00A00318 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
 		1BDCE2702607B97C00A00318 /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		1BDCE2732607C3A500A00318 /* SummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewController.swift; sourceTree = "<group>"; };
-		1BEC9CB925EEF4E0002998B6 /* Yandex Investments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yandex Investments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BEC9CB925EEF4E0002998B6 /* Investments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investments.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BEC9CBC25EEF4E0002998B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BEC9CBE25EEF4E0002998B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1BEC9CC525EEF4E5002998B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 		1BEC9CB025EEF4E0002998B6 = {
 			isa = PBXGroup;
 			children = (
-				1BEC9CBB25EEF4E0002998B6 /* Yandex Investments */,
+				1BEC9CBB25EEF4E0002998B6 /* Investments */,
 				1BEC9CBA25EEF4E0002998B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -266,12 +266,12 @@
 		1BEC9CBA25EEF4E0002998B6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1BEC9CB925EEF4E0002998B6 /* Yandex Investments.app */,
+				1BEC9CB925EEF4E0002998B6 /* Investments.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1BEC9CBB25EEF4E0002998B6 /* Yandex Investments */ = {
+		1BEC9CBB25EEF4E0002998B6 /* Investments */ = {
 			isa = PBXGroup;
 			children = (
 				1BA34C40261216AD002759FB /* ModuleBuilder */,
@@ -285,7 +285,7 @@
 				1BEC9CCA25EEF4E5002998B6 /* Info.plist */,
 				1B03C4EB26271C460090C1E6 /* UIColor_Hex.swift */,
 			);
-			path = "Yandex Investments";
+			path = Investments;
 			sourceTree = "<group>";
 		};
 		1BEC9CD225EEF545002998B6 /* Services */ = {
@@ -404,9 +404,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1BEC9CB825EEF4E0002998B6 /* Yandex Investments */ = {
+		1BEC9CB825EEF4E0002998B6 /* Investments */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1BEC9CCD25EEF4E5002998B6 /* Build configuration list for PBXNativeTarget "Yandex Investments" */;
+			buildConfigurationList = 1BEC9CCD25EEF4E5002998B6 /* Build configuration list for PBXNativeTarget "Investments" */;
 			buildPhases = (
 				1BEC9CB525EEF4E0002998B6 /* Sources */,
 				1BEC9CB625EEF4E0002998B6 /* Frameworks */,
@@ -416,14 +416,14 @@
 			);
 			dependencies = (
 			);
-			name = "Yandex Investments";
+			name = Investments;
 			packageProductDependencies = (
 				1B16A2F52602B21D00063BE0 /* Charts */,
 				1B1B94742607667000C0B142 /* Parchment */,
 				1BE1D5DD26112BDA001ED83D /* TinyConstraints */,
 			);
 			productName = "Yandex Investments";
-			productReference = 1BEC9CB925EEF4E0002998B6 /* Yandex Investments.app */;
+			productReference = 1BEC9CB925EEF4E0002998B6 /* Investments.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -440,7 +440,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1BEC9CB425EEF4E0002998B6 /* Build configuration list for PBXProject "Yandex Investments" */;
+			buildConfigurationList = 1BEC9CB425EEF4E0002998B6 /* Build configuration list for PBXProject "Investments" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -458,7 +458,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1BEC9CB825EEF4E0002998B6 /* Yandex Investments */,
+				1BEC9CB825EEF4E0002998B6 /* Investments */,
 			);
 		};
 /* End PBXProject section */
@@ -700,7 +700,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1BEC9CB425EEF4E0002998B6 /* Build configuration list for PBXProject "Yandex Investments" */ = {
+		1BEC9CB425EEF4E0002998B6 /* Build configuration list for PBXProject "Investments" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1BEC9CCB25EEF4E5002998B6 /* Debug */,
@@ -709,7 +709,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1BEC9CCD25EEF4E5002998B6 /* Build configuration list for PBXNativeTarget "Yandex Investments" */ = {
+		1BEC9CCD25EEF4E5002998B6 /* Build configuration list for PBXNativeTarget "Investments" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1BEC9CCE25EEF4E5002998B6 /* Debug */,
